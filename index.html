@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unite Media Team | Social Media Agency</title>
+    <title>Unite Media Team | Floral Editorial Portfolio</title>
     
-    <!-- Fonts -->
+    <!-- Fonts: Playfair Display (Serif Tạp chí), Space Grotesk (Display), Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -17,324 +17,292 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Bật chế độ Dark Mode bằng class
             theme: {
                 extend: {
                     fontFamily: {
-                        display: ['Space Grotesk', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        dark: '#0a0a0a', 
-                        light: '#fafafa',
-                        accent: '#ccff00', // Neon Green (GenZ)
-                        accentDark: '#84cc16', // Darker lime for light mode text
+                        brand: {
+                            dark: '#01260E',    // Deep Forest Green
+                            light: '#F4F1EB',   // Cream Paper
+                            pink: '#F2A0B6',    // Dusty Pink
+                            sage: '#A8B49E',    // Sage Green
+                            olive: '#476048',   // Olive Green
+                            sand: '#E9E1B5',    // Pale Yellow
+                        }
                     }
                 }
             }
         }
     </script>
 
-    <!-- Tailwind CSS Custom Classes (Sử dụng type="text/tailwindcss" để dùng @apply) -->
-    <style type="text/tailwindcss">
-        @layer components {
-            /* Glassmorphism chuẩn cho cả 2 mode */
-            .glass-panel {
-                @apply bg-white/70 dark:bg-zinc-900/60 backdrop-blur-xl border border-zinc-200 dark:border-white/10 shadow-lg;
-            }
-            .glass-card {
-                @apply bg-white/60 dark:bg-white/5 backdrop-blur-2xl border border-zinc-200 dark:border-white/10 shadow-xl rounded-[2rem] transition-all duration-500 overflow-hidden relative;
-            }
-            .glass-card:hover {
-                @apply -translate-y-2 border-zinc-400 dark:border-accent/40 shadow-2xl;
-            }
-            
-            /* Text động theo theme */
-            .text-heading {
-                @apply text-zinc-900 dark:text-white;
-            }
-            .text-body {
-                @apply text-zinc-600 dark:text-zinc-400;
-            }
-            .text-highlight {
-                @apply text-accentDark dark:text-accent;
-            }
-            
-            /* Buttons */
-            .btn-primary {
-                @apply bg-zinc-900 text-white dark:bg-accent dark:text-black px-8 py-4 rounded-full font-bold transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3;
-            }
-            .btn-secondary {
-                @apply glass-panel text-zinc-900 dark:text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-zinc-200 dark:hover:bg-white/10 flex items-center justify-center gap-3;
-            }
-        }
-    </style>
-
     <style>
         body {
-            /* Chuyển đổi theme mượt mà */
-            transition: background-color 0.5s ease, color 0.5s ease;
+            background-color: #F4F1EB;
+            color: #01260E;
+            overflow-x: hidden;
+            /* Hiệu ứng hạt nhám của giấy Tạp chí */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* --- Liquid Glass Background --- */
-        .blob-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            filter: blur(120px); /* Tăng độ blur để màu mềm mịn, không bị gắt */
-            pointer-events: none;
+        .dark-section {
+            background-color: #01260E;
+            color: #F4F1EB;
+            position: relative;
         }
         
-        .blob {
+        .dark-section::before {
+            content: "";
             position: absolute;
-            border-radius: 50%;
-            animation: floatBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-            transition: opacity 0.5s ease;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* Mode sáng: Màu nhạt hơn. Mode tối: Phát sáng screen */
-        .blob { mix-blend-mode: multiply; opacity: 0.3; }
-        .dark .blob { mix-blend-mode: screen; opacity: 0.4; }
-
-        .blob-1 { top: 10%; left: -10%; width: 60vw; height: 60vw; background: #ccff00; animation-delay: 0s; } /* Main Glow */
-        .blob-2 { top: 50%; right: -20%; width: 50vw; height: 50vw; background: #10b981; animation-delay: -5s; } /* Emerald */
-        .blob-3 { bottom: -20%; left: 30%; width: 40vw; height: 40vw; background: #3b82f6; animation-delay: -10s; } /* Blue */
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10vw, 10vh) scale(1.2); }
-            100% { transform: translate(-5vw, -10vh) scale(0.9); }
+        /* Fluid Typography (Chữ tự to/nhỏ theo màn hình) */
+        .title-huge {
+            font-size: clamp(4.5rem, 14vw, 15rem);
+            line-height: 0.8;
+            letter-spacing: -0.03em;
+        }
+        
+        .title-large {
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            line-height: 0.85;
+            letter-spacing: -0.02em;
         }
 
-        /* Hide scrollbar but keep functionality */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Text Effects */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px #01260E;
+        }
+        .text-outline-light {
+            color: transparent;
+            -webkit-text-stroke: 1px #F4F1EB;
+        }
 
-        /* Scroll Reveal Animation */
-        .reveal {
+        /* Animations */
+        .reveal-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .reveal.active {
+        .reveal-up.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Cải thiện Highlight Tag trong Light Mode */
-        .badge-tag {
-            background: linear-gradient(90deg, rgba(204,255,0,0.2), transparent);
-            border: 1px solid rgba(204, 255, 0, 0.4);
+        /* Chuyển động lơ lửng cho Hoa (Organic floating) */
+        .float-slow {
+            animation: float 8s ease-in-out infinite alternate;
         }
-        .dark .badge-tag {
-            background: linear-gradient(90deg, rgba(204,255,0,0.1), transparent);
+        .float-medium {
+            animation: float-rotate 12s ease-in-out infinite alternate;
         }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-30px); }
+        }
+        @keyframes float-rotate {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .spin-slow {
+            animation: spin 20s linear infinite;
+        }
+
+        /* Ticker */
+        .ticker-wrapper { overflow: hidden; white-space: nowrap; display: flex; }
+        .ticker-content { display: inline-flex; animation: ticker 30s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        ::selection { background-color: #F2A0B6; color: #01260E; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-dark dark:text-white selection:bg-accent selection:text-black antialiased">
+<body class="antialiased font-sans">
 
-    <!-- Liquid Background -->
-    <div class="blob-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <!-- NAVBAR -->
-    <nav class="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
-        <div class="glass-panel max-w-7xl mx-auto rounded-full px-4 md:px-6 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full border-2 border-zinc-900 dark:border-accent flex items-center justify-center font-display font-bold text-lg text-zinc-900 dark:text-accent">
-                    U.
-                </div>
-                <span class="font-display font-bold text-xl tracking-tight hidden sm:block text-heading">UNITE MEDIA</span>
+    <!-- MINIMAL NAVBAR (Kính mờ - Glassmorphism) -->
+    <nav id="navbar" class="fixed top-4 left-4 right-4 z-50 transition-all duration-300">
+        <div id="navbar-container" class="max-w-screen-2xl mx-auto bg-brand-light/60 backdrop-blur-xl border border-white/60 shadow-lg rounded-full px-6 py-3 md:py-4 flex justify-between items-center text-brand-dark transition-all duration-300">
+            <a href="#" class="font-serif font-bold text-xl md:text-2xl tracking-tighter uppercase leading-none hover:italic transition-all">
+                UNITE <br> MEDIA.
             </a>
 
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-body">
-                <a href="#about" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_about">Về chúng tôi</a>
-                <a href="#services" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_services">Dịch vụ</a>
-                <a href="#process" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_process">Quy trình</a>
-                <a href="#pricing" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_pricing">Bảng giá</a>
+            <!-- Trình bày Menu ngang cho dễ nhìn trong thanh kính -->
+            <div class="hidden md:flex items-center gap-8 text-[10px] font-bold tracking-[0.2em] uppercase">
+                <a href="#about" class="hover:text-brand-pink transition-colors" data-i18n="nav_about">Về chúng tôi</a>
+                <a href="#services" class="hover:text-brand-pink transition-colors" data-i18n="nav_services">Dịch vụ</a>
+                <a href="#projects" class="hover:text-brand-pink transition-colors" data-i18n="nav_process">Case Study</a>
+                <a href="#contact" class="hover:text-brand-pink transition-colors" data-i18n="nav_contact">Liên hệ</a>
             </div>
 
-            <div class="flex items-center gap-3">
-                <!-- Theme Toggle -->
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block"></i>
-                </button>
-
-                <!-- i18n Toggle -->
-                <div class="bg-zinc-200 dark:bg-zinc-800 rounded-full p-1 flex">
-                    <button onclick="setLang('vi')" id="btn-vi" class="lang-btn text-xs font-bold px-3 py-1.5 rounded-full transition-colors bg-white text-black dark:bg-black dark:text-white shadow-sm">VI</button>
-                    <button onclick="setLang('en')" id="btn-en" class="lang-btn text-xs font-bold px-3 py-1.5 rounded-full transition-colors text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">EN</button>
-                </div>
-                
-                <a href="#contact" class="hidden lg:flex btn-primary !py-2 !px-6 !text-sm">
-                    <span data-i18n="nav_contact">Liên hệ</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+            <!-- Lang Toggle -->
+            <div class="flex gap-4 text-[10px] font-bold tracking-[0.2em] uppercase">
+                <button onclick="setLang('vi')" id="btn-vi" class="border-b border-brand-dark pb-0.5 transition-all">VI</button>
+                <button onclick="setLang('en')" id="btn-en" class="opacity-50 hover:opacity-100 transition-all border-b border-transparent">EN</button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen relative flex items-center pt-32 pb-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
-            <!-- Hero Text (Cấu trúc Typography mới: Rõ ràng, Chuyên nghiệp, Nhấn mạnh) -->
-            <div class="lg:col-span-7 space-y-8 relative z-20">
-                <!-- Tagline Badge -->
-                <div class="inline-flex items-center gap-2 badge-tag px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-zinc-800 dark:text-white backdrop-blur-md">
-                    <i class="fa-solid fa-bolt text-highlight"></i>
-                    <span data-i18n="hero_subtitle">Social Media Strategy – Video Production – TikTok Growth</span>
-                </div>
-                
-                <!-- Main Titles (Cấu trúc bám sát hình mẫu, chữ đặc, không bị khoảng trống) -->
-                <div class="relative flex flex-col gap-2">
-                    <h1 class="text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-display font-black leading-[1.05] tracking-tighter text-heading uppercase drop-shadow-sm">
-                        UNITE MEDIA <br> TEAM
-                    </h1>
-                    <h2 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-display font-bold leading-[1.15] tracking-tight text-highlight italic drop-shadow-md mb-4" data-i18n="hero_slogan">
-                        Giải pháp truyền thông <br class="hidden md:block"> cho doanh nghiệp
-                    </h2>
-                </div>
-                
-                <p class="text-lg text-body max-w-xl font-sans font-medium leading-relaxed" data-i18n="hero_desc">
-                    Chúng tôi đảm nhận mọi việc từ lên ý tưởng, sản xuất và phân phối, gửi đến tay khách hàng những sản phẩm đã được hoàn thiện chỉnh chu trên đa nền tảng.
-                </p>
+    <!-- HERO SECTION (Tạp chí 3 Lớp - Layering Editorial) -->
+    <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-brand-light">
+        
+        <!-- LAYER 1: Text rỗng (Dưới cùng) -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-0 px-4">
+            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">UNITE</h1>
+            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">MEDIA</h1>
+            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">TEAM.</h1>
+        </div>
 
-                <!-- Call to Actions -->
-                <div class="flex flex-col sm:flex-row gap-5 pt-6">
-                    <a href="#services" class="btn-primary !px-10 !py-5 !text-lg">
-                        <span data-i18n="btn_explore">Khám phá Dịch vụ</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="#case-study" class="btn-secondary !px-10 !py-5 !text-lg border-2 border-transparent hover:border-zinc-300 dark:hover:border-white/20">
-                        <i class="fa-regular fa-chart-bar"></i>
-                        <span data-i18n="btn_casestudy">Xem Case Study</span>
-                    </a>
-                </div>
-            </div>
+        <!-- LAYER 2: Floral Image (Catananche) -->
+        <div class="absolute z-10 w-[95vw] md:w-[45vw] max-w-[700px] top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+            <!-- Ảnh hoa Catananche -->
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/20260319_160520_0000.png" 
+                 class="w-full h-auto drop-shadow-[0_30px_50px_rgba(1,38,14,0.3)] float-slow" 
+                 alt="Hoa trang trí Hero Catananche">
+        </div>
 
-            <!-- Hero Visual (Cấu trúc Bất đối xứng - Phá vỡ sự an toàn) -->
-            <div class="lg:col-span-5 relative w-full h-full min-h-[500px] flex items-center justify-center mt-12 lg:mt-0">
-                <!-- Decorative Glass Backdrop Pill -->
-                <div class="absolute top-0 right-0 lg:-right-10 w-[80%] h-full bg-white/40 dark:bg-white/5 backdrop-blur-3xl rounded-[3rem] border border-zinc-200 dark:border-white/10 transform rotate-[6deg] transition-transform hover:rotate-0 duration-700 z-0 shadow-2xl"></div>
-                
-                <!-- Main Image -->
-                <div class="relative z-10 w-[85%] aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl group border-2 border-white/50 dark:border-white/20 transform rotate-[-4deg] hover:rotate-0 transition-all duration-700">
-                    <div class="absolute inset-0 bg-zinc-900/10 dark:bg-black/30 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" alt="Unite Media Team Studio" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 grayscale-[10%] group-hover:grayscale-0">
-                </div>
+        <!-- LAYER 3: Text đặc (Trên cùng) -->
+        <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-20 px-4">
+            <h1 class="title-huge font-serif text-brand-dark text-center w-full drop-shadow-md" data-i18n="hero_word1">UNITE</h1>
+            <!-- Chữ MEDIA trong suốt để giữ chuẩn khoảng cách, cho phép nhìn xuyên qua lớp hoa -->
+            <h1 class="title-huge font-serif text-transparent text-center w-full select-none" data-i18n="hero_word2">MEDIA</h1>
+            <h1 class="title-huge font-serif text-brand-pink text-center w-full italic drop-shadow-md" data-i18n="hero_word3">TEAM.</h1>
+        </div>
 
-                <!-- Overlapping Creative Glass Element (Thay thế thẻ 5M+) -->
-                <div class="absolute bottom-12 -left-2 lg:-left-12 z-20 glass-panel p-5 rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 max-w-[220px] backdrop-blur-2xl">
-                    <div class="flex items-center gap-3 mb-2">
-                        <!-- Dot chớp tắt live -->
-                        <div class="w-3 h-3 rounded-full bg-accent animate-ping absolute"></div>
-                        <div class="w-3 h-3 rounded-full bg-accent relative z-10"></div>
-                        <span class="text-xs font-black uppercase tracking-widest text-heading" data-i18n="hero_tag_1">Creative</span>
-                    </div>
-                    <div class="text-sm font-semibold text-body leading-tight" data-i18n="hero_tag_2">
-                        Không an toàn. Không rập khuôn.
-                    </div>
-                </div>
-            </div>
+        <!-- Circular Text Badge -->
+        <div class="absolute bottom-12 right-6 md:bottom-16 md:right-16 z-30 w-32 md:w-40 aspect-square spin-slow">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-brand-dark fill-current overflow-visible">
+                <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
+                <text font-size="10.5" font-family="Space Grotesk" font-weight="bold" letter-spacing="0.1em" class="uppercase">
+                    <textPath href="#circlePath" startOffset="0%">
+                        • SOCIAL STRATEGY • TIKTOK GROWTH 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
 
+        <!-- Intro Text Góc Trái -->
+        <div class="absolute bottom-12 left-6 md:left-12 z-30 max-w-[280px]">
+            <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-pink mb-3" data-i18n="hero_subtitle">Digital Agency</p>
+            <p class="text-sm font-light text-brand-dark/80 leading-relaxed" data-i18n="hero_desc">
+                Giải pháp truyền thông toàn diện. Bức tranh thương hiệu của bạn được vẽ bởi những nhà sáng tạo thế hệ mới.
+            </p>
         </div>
     </section>
 
-    <!-- STATS BAR (Minimalist) -->
-    <div class="border-y border-zinc-200 dark:border-white/5 bg-white/50 dark:bg-black/20 backdrop-blur-xl relative z-10">
-        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row justify-between gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200 dark:divide-white/10">
-            <div class="flex-1 reveal">
-                <div class="text-5xl font-display font-black text-heading mb-2">20+</div>
-                <div class="text-sm font-semibold uppercase tracking-widest text-body" data-i18n="stat_1">Doanh nghiệp</div>
-            </div>
-            <div class="flex-1 reveal sm:pt-0 pt-8">
-                <div class="text-5xl font-display font-black text-heading mb-2">300+</div>
-                <div class="text-sm font-semibold uppercase tracking-widest text-body" data-i18n="stat_2">Video sản xuất</div>
-            </div>
-            <div class="flex-1 reveal sm:pt-0 pt-8">
-                <div class="text-5xl font-display font-black text-highlight mb-2">5M+</div>
-                <div class="text-sm font-semibold uppercase tracking-widest text-body" data-i18n="stat_3">Tổng lượt xem</div>
-            </div>
+    <!-- PHILOSOPHY / ABOUT (Sự kết hợp giữa Hoa và Chữ) -->
+    <section id="about" class="py-32 bg-brand-sage relative overflow-hidden">
+        
+        <!-- Bông hoa Anthyllis (Mọc ngang từ góc trái) -->
+        <div class="absolute -left-[10vw] top-[5vh] w-[60vw] md:w-[40vw] max-w-[550px] z-0 opacity-70 pointer-events-none transform -rotate-6">
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/anthyllismarit.png" 
+                 class="w-full h-auto drop-shadow-2xl float-medium" 
+                 alt="Hoa trang trí About Anthyllis">
         </div>
-    </div>
 
-    <!-- ABOUT US & VISION/MISSION -->
-    <section id="about" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-12 gap-16 items-start">
+        <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 relative z-10">
                 
-                <div class="lg:col-span-5 space-y-8 reveal">
-                    <div>
-                        <h2 class="text-sm font-bold tracking-widest uppercase text-highlight mb-4" data-i18n="about_label">Về chúng tôi</h2>
-                        <h3 class="text-4xl md:text-5xl font-display font-bold leading-tight text-heading">
-                            Đối tác chiến lược cho kỷ nguyên Social Media.
-                        </h3>
-                    </div>
-                    <p class="text-body text-lg leading-relaxed font-medium" data-i18n="about_desc">
-                        Unite Media Team là đội ngũ chuyên xây dựng và phát triển hệ thống social media cho doanh nghiệp, đặc biệt tập trung vào việc xây kênh TikTok tạo chuyển đổi thực tế.
+                <!-- Left text -->
+                <div class="md:col-span-6 md:col-start-2 flex flex-col justify-center reveal-up">
+                    <div class="text-[10px] uppercase font-bold tracking-[0.2em] text-brand-dark/50 mb-6" data-i18n="about_label">Triết lý sáng tạo</div>
+                    <h2 class="text-brand-dark font-serif text-4xl md:text-6xl italic leading-[1.1] mb-8" data-i18n="mission_title">
+                        "Mỗi nội dung đều có một nhịp điệu riêng."
+                    </h2>
+                    <p class="text-brand-dark/80 font-light text-lg mb-6 leading-relaxed" data-i18n="about_desc_1">
+                        Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. Unite Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.
+                    </p>
+                    <p class="text-brand-dark/80 font-light text-lg leading-relaxed" data-i18n="about_desc_2">
+                        Chúng tôi giúp thương hiệu của bạn "nở rộ" đúng thời điểm, tiếp cận đúng người và biến sự chú ý thành tăng trưởng bền vững.
                     </p>
                     
-                    <div class="space-y-4">
-                        <div class="glass-card p-6 !rounded-2xl">
-                            <div class="flex items-start gap-4">
-                                <i class="fa-solid fa-eye text-2xl text-highlight mt-1"></i>
-                                <div>
-                                    <h4 class="text-lg font-bold text-heading mb-1" data-i18n="vision_title">Tầm nhìn</h4>
-                                    <p class="text-body text-sm font-medium" data-i18n="vision_desc">Nơi mỗi video không chỉ tạo ra lượt xem mà còn tạo ra giá trị kinh doanh thực sự.</p>
-                                </div>
-                            </div>
+                    <div class="mt-12 flex gap-16 border-t border-brand-dark/20 pt-8">
+                        <div>
+                            <div class="font-serif text-5xl text-brand-dark mb-1">300+</div>
+                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/60" data-i18n="stat_2">Video Sản Xuất</div>
                         </div>
-                        <div class="glass-card p-6 !rounded-2xl">
-                            <div class="flex items-start gap-4">
-                                <i class="fa-solid fa-bullseye text-2xl text-highlight mt-1"></i>
-                                <div>
-                                    <h4 class="text-lg font-bold text-heading mb-1" data-i18n="mission_title">Sứ mệnh</h4>
-                                    <p class="text-body text-sm font-medium" data-i18n="mission_desc">Giúp doanh nghiệp xây dựng hệ thống nội dung hiệu quả qua chiến lược bài bản và tối ưu dữ liệu.</p>
-                                </div>
-                            </div>
+                        <div>
+                            <div class="font-serif text-5xl text-brand-pink mb-1">5M+</div>
+                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/60" data-i18n="stat_3">Lượt Xem</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Value Creation Bento Box -->
-                <div class="lg:col-span-7 glass-panel p-8 md:p-12 rounded-[2.5rem] reveal">
-                    <h3 class="text-2xl font-display font-bold text-heading mb-8 pb-6 border-b border-zinc-200 dark:border-white/10" data-i18n="value_title">Chuỗi giá trị tạo ra cho doanh nghiệp:</h3>
-                    
-                    <div class="grid sm:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-900 dark:text-zinc-300 mb-4 text-xl">
-                                <i class="fa-solid fa-chess-knight"></i>
-                            </div>
-                            <div class="font-bold text-heading text-xl" data-i18n="val1_title">Chiến lược</div>
-                            <div class="text-sm font-medium text-body" data-i18n="val1_desc">Nội dung phù hợp định vị.</div>
+                <!-- Right Overlapping Image (Aesthetic) -->
+                <div class="md:col-span-4 md:col-start-9 relative reveal-up delay-200 mt-12 md:mt-0">
+                    <div class="aspect-[3/4] w-full bg-[#E9E1B5] p-3 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                        <!-- Đổi ảnh Workspace sang phong cách Nội thất tĩnh vật mộc mạc (Editorial Interior) -->
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[10%]" alt="Creative Workspace">
+                        <div class="absolute -bottom-6 -left-6 bg-brand-dark text-brand-light px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-xl">
+                            Est. 2024
                         </div>
-                        <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-900 dark:text-zinc-300 mb-4 text-xl">
-                                <i class="fa-solid fa-video"></i>
-                            </div>
-                            <div class="font-bold text-heading text-xl" data-i18n="val2_title">Sản xuất</div>
-                            <div class="text-sm font-medium text-body" data-i18n="val2_desc">Video thu hút, dễ lan truyền.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CORE VALUES (Bảng màu) -->
+    <section class="py-32 bg-brand-light">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal-up border-b border-brand-dark/10 pb-8">
+                <h2 class="title-large font-serif text-brand-dark leading-none" data-i18n="core_title">Hệ Giá Trị.</h2>
+                <p class="text-sm font-semibold tracking-widest uppercase text-brand-pink max-w-xs text-right" data-i18n="core_subtitle">Bảng màu tạo nên sự khác biệt.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Box 1 -->
+                <div class="reveal-up group">
+                    <div class="aspect-[2/3] bg-brand-pink flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
+                        <div class="w-10 h-10 rounded-full bg-brand-dark mt-8 shadow-inner"></div>
+                        <div>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/50 mb-2">01</div>
+                            <h3 class="font-serif text-3xl text-brand-dark mb-3" data-i18n="cv1_title">Hiệu Quả</h3>
+                            <p class="text-sm text-brand-dark/80 font-medium" data-i18n="cv1_desc">Tập trung vào chuyển đổi và doanh thu.</p>
                         </div>
-                        <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-900 dark:text-zinc-300 mb-4 text-xl">
-                                <i class="fa-solid fa-magnet"></i>
-                            </div>
-                            <div class="font-bold text-heading text-xl" data-i18n="val3_title">Chuyển đổi</div>
-                            <div class="text-sm font-medium text-body" data-i18n="val3_desc">Biến view thành doanh thu.</div>
+                    </div>
+                </div>
+                <!-- Box 2 -->
+                <div class="reveal-up delay-100 group">
+                    <div class="aspect-[2/3] bg-brand-olive flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
+                        <div class="w-10 h-10 rounded-full bg-brand-sand mt-8 shadow-inner"></div>
+                        <div>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/50 mb-2">02</div>
+                            <h3 class="font-serif text-3xl text-brand-light mb-3" data-i18n="cv2_title">Sáng Tạo</h3>
+                            <p class="text-sm text-brand-light/80 font-light" data-i18n="cv2_desc">Kể câu chuyện thương hiệu độc bản.</p>
                         </div>
-                        <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-900 dark:text-zinc-300 mb-4 text-xl">
-                                <i class="fa-solid fa-handshake"></i>
-                            </div>
-                            <div class="font-bold text-heading text-xl" data-i18n="val4_title">Đồng hành</div>
-                            <div class="text-sm font-medium text-body" data-i18n="val4_desc">Cùng phát triển dài hạn.</div>
+                    </div>
+                </div>
+                <!-- Box 3 -->
+                <div class="reveal-up delay-200 group">
+                    <div class="aspect-[2/3] bg-brand-sand flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
+                        <div class="w-10 h-10 rounded-full bg-brand-pink mt-8 shadow-inner"></div>
+                        <div>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/50 mb-2">03</div>
+                            <h3 class="font-serif text-3xl text-brand-dark mb-3" data-i18n="cv3_title">Chiến Lược</h3>
+                            <p class="text-sm text-brand-dark/80 font-medium" data-i18n="cv3_desc">Định hướng nội dung dựa trên data.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Box 4 -->
+                <div class="reveal-up delay-300 group">
+                    <div class="aspect-[2/3] bg-brand-dark flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
+                        <div class="w-10 h-10 rounded-full bg-brand-sage mt-8 shadow-inner"></div>
+                        <div>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/50 mb-2">04</div>
+                            <h3 class="font-serif text-3xl text-brand-light mb-3" data-i18n="cv4_title">Đồng Hành</h3>
+                            <p class="text-sm text-brand-light/80 font-light" data-i18n="cv4_desc">Sát cánh như một team in-house.</p>
                         </div>
                     </div>
                 </div>
@@ -342,287 +310,163 @@
         </div>
     </section>
 
-    <!-- CORE VALUES (Clean Grid) -->
-    <section class="py-24 relative z-10 border-t border-zinc-200 dark:border-white/5 bg-zinc-100/50 dark:bg-black/30">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-bold text-heading mb-4" data-i18n="core_title">Giá trị cốt lõi</h2>
+    <!-- SERVICES (List Tạp chí) -->
+    <section id="services" class="py-32 dark-section z-10 relative">
+        <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-24 reveal-up">
+                <h2 class="title-large font-serif italic text-brand-light" data-i18n="services_title">Giải Pháp.</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- V1 -->
-                <div class="glass-card p-8 reveal group">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fa-solid fa-chart-line text-3xl text-highlight group-hover:-translate-y-1 transition-transform"></i>
-                        <span class="text-4xl font-display font-black text-zinc-200 dark:text-white/5">01</span>
+            <div class="space-y-0">
+                <div class="group border-t border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
+                        <div class="md:col-span-1 font-display text-lg text-brand-pink">01</div>
+                        <div class="md:col-span-5">
+                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-pink transition-colors">TikTok Strategy</h3>
+                        </div>
+                        <div class="md:col-span-5 md:col-start-8">
+                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s1_desc">Nghiên cứu thị trường, định vị concept kênh và xây dựng tuyến nội dung mang tính chiến lược dài hạn.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-heading mb-3" data-i18n="cv1_title">Hiệu quả (Performance)</h3>
-                    <p class="text-body font-medium" data-i18n="cv1_desc">Tập trung vào kết quả thực tế, video tạo ra tăng trưởng về thương hiệu và khách hàng.</p>
                 </div>
-                <!-- V2 -->
-                <div class="glass-card p-8 reveal group">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fa-solid fa-lightbulb text-3xl text-zinc-400 dark:text-zinc-300 group-hover:-translate-y-1 transition-transform"></i>
-                        <span class="text-4xl font-display font-black text-zinc-200 dark:text-white/5">02</span>
+
+                <div class="group border-t border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
+                        <div class="md:col-span-1 font-display text-lg text-brand-sage">02</div>
+                        <div class="md:col-span-5">
+                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-sage transition-colors">Video Production</h3>
+                        </div>
+                        <div class="md:col-span-5 md:col-start-8">
+                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s2_desc">Biến ý tưởng thành khung hình. Kịch bản sắc bén, quay dựng chuyên nghiệp và tối ưu hook thu hút người xem.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-heading mb-3" data-i18n="cv2_title">Sáng tạo (Creativity)</h3>
-                    <p class="text-body font-medium" data-i18n="cv2_desc">Luôn tìm kiếm ý tưởng mới, format mới và cách kể chuyện hấp dẫn.</p>
                 </div>
-                <!-- V3 -->
-                <div class="glass-card p-8 reveal group">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fa-solid fa-map-location-dot text-3xl text-zinc-400 dark:text-zinc-300 group-hover:-translate-y-1 transition-transform"></i>
-                        <span class="text-4xl font-display font-black text-zinc-200 dark:text-white/5">03</span>
+
+                <div class="group border-y border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
+                        <div class="md:col-span-1 font-display text-lg text-brand-sand">03</div>
+                        <div class="md:col-span-5">
+                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-sand transition-colors">Social Management</h3>
+                        </div>
+                        <div class="md:col-span-5 md:col-start-8">
+                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s3_desc">Chăm sóc kênh toàn diện. Đăng tải tối ưu thuật toán, quản lý tương tác và báo cáo hiệu suất hàng tuần.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-heading mb-3" data-i18n="cv3_title">Chiến lược (Strategy)</h3>
-                    <p class="text-body font-medium" data-i18n="cv3_desc">Nội dung xây dựng dựa trên nghiên cứu thị trường và hành vi người dùng rõ ràng.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TARGET AUDIENCE (Pain points) -->
-    <section id="target" class="py-24 relative z-10">
-        <div class="max-w-5xl mx-auto px-6 text-center reveal">
-            <h2 class="text-3xl md:text-5xl font-display font-bold text-heading mb-12" data-i18n="target_title">Doanh nghiệp bạn đang gặp vấn đề?</h2>
+    <!-- PRICING (Sử dụng Hoa Hellebore) -->
+    <section id="pricing" class="py-32 bg-brand-light border-t border-brand-dark/10 relative overflow-hidden">
+        
+        <!-- Bông hoa Hellebore rủ xuống từ góc trên bên phải -->
+        <div class="absolute right-[-5vw] top-[-10vh] w-[150vw] max-w-[650px] z-0 opacity-100 pointer-events-none transform -rotate-12">
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/helle.png" 
+                 class="w-full h-auto drop-shadow-xl float-slow" 
+                 alt="Hoa trang trí Pricing Hellebore">
+        </div>
+
+        <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-24 reveal-up">
+                <h2 class="font-serif text-6xl md:text-7xl text-brand-dark mb-4" data-i18n="price_title">Bảng giá.</h2>
+                <p class="text-brand-dark/50 text-xs tracking-[0.3em] uppercase font-bold" data-i18n="price_subtitle">Minh bạch. Rõ ràng. Hiệu quả.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Các gói cước thiết kế Editorial tối giản -->
+                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up bg-brand-light/80 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Trial</div>
+                    <div class="font-serif text-5xl text-brand-dark mb-10">3 Video</div>
+                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                        <li class="border-b border-brand-dark/10 pb-2">Idea & Script</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Quay & Dựng</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Bàn giao file final</li>
+                    </ul>
+                </div>
+
+                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up delay-100 bg-brand-light/80 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Basic</div>
+                    <div class="font-serif text-5xl text-brand-dark mb-10">10 Video <span class="text-base font-sans font-light text-brand-dark/40">/m</span></div>
+                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                        <li class="border-b border-brand-dark/10 pb-2">Idea & Script</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Quay & Dựng</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Bàn giao file final</li>
+                    </ul>
+                </div>
+
+                <div class="border border-brand-dark p-8 md:p-10 bg-brand-dark text-brand-light transform lg:-translate-y-4 shadow-2xl reveal-up delay-200 relative">
+                    <div class="absolute top-5 right-5 text-[10px] bg-brand-pink text-brand-dark px-3 py-1 uppercase font-bold tracking-widest">Hot</div>
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-pink mb-3">Standard</div>
+                    <div class="font-serif text-5xl text-brand-light mb-10">15 Video <span class="text-base font-sans font-light text-brand-light/40">/m</span></div>
+                    <ul class="space-y-4 text-sm text-brand-light/80 font-light">
+                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Idea & Script</li>
+                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Quay & Dựng</li>
+                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Đăng bài & Quản lý</li>
+                    </ul>
+                </div>
+
+                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up delay-300 bg-brand-light/80 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Premium</div>
+                    <div class="font-serif text-5xl text-brand-dark mb-10">20 Video <span class="text-base font-sans font-light text-brand-dark/40">/m</span></div>
+                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                        <li class="border-b border-brand-dark/10 pb-2">Chiến lược kênh</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Idea, Quay, Dựng</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Đăng bài & Quản lý</li>
+                        <li class="border-b border-brand-dark/10 pb-2">Báo cáo tuần</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA (Hoa 0003 Xếp Lớp với Chữ Trắng) -->
+    <section id="contact" class="dark-section pt-40 pb-12 overflow-hidden flex flex-col justify-between min-h-[85vh] relative">
+        
+        <!-- Giữ lại bông hoa 0003 cũ vì link thứ 4 bị lỗi -->
+        <div class="absolute left-[-5vw] bottom-[10vh] w-[50vw] max-w-[600px] z-10 pointer-events-none transform rotate-12">
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/20260319_160521_0003.png" 
+                 class="w-full h-auto drop-shadow-2xl float-medium" 
+                 alt="Hoa trang trí Footer">
+        </div>
+
+        <div class="max-w-screen-2xl mx-auto px-6 w-full text-center relative z-20">
+            <h2 class="title-huge font-display font-black text-outline-light uppercase leading-[0.8] mb-12 pointer-events-none" data-i18n="contact_title">
+                LET'S <br> <span class="italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal">CREATE.</span>
+            </h2>
             
-            <div class="grid sm:grid-cols-2 gap-4 text-left mb-12">
-                <div class="glass-card p-6 border-red-500/20 bg-red-50/50 dark:bg-red-900/10">
-                    <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-semibold">
-                        <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark"></i></div>
-                        <span data-i18n="pain_1">Không biết làm nội dung TikTok</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 border-red-500/20 bg-red-50/50 dark:bg-red-900/10">
-                    <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-semibold">
-                        <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark"></i></div>
-                        <span data-i18n="pain_2">Không có đội quay dựng chuyên nghiệp</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 border-red-500/20 bg-red-50/50 dark:bg-red-900/10">
-                    <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-semibold">
-                        <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark"></i></div>
-                        <span data-i18n="pain_3">Video đăng mãi nhưng không viral</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 border-red-500/20 bg-red-50/50 dark:bg-red-900/10">
-                    <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-semibold">
-                        <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark"></i></div>
-                        <span data-i18n="pain_4">Không biết cách chuyển đổi khách hàng</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-2xl font-display font-bold text-highlight px-6 py-4 glass-panel rounded-full inline-block" data-i18n="target_solution">
-                Chúng tôi ở đây để giải quyết tất cả vấn đề đó!
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="py-24 relative z-10 border-t border-zinc-200 dark:border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-sm font-bold tracking-widest uppercase text-highlight mb-2" data-i18n="services_label">Giải pháp B2B</h2>
-                <h3 class="text-4xl md:text-5xl font-display font-bold text-heading" data-i18n="services_title">Dịch vụ chúng tôi cung cấp</h3>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- S1 -->
-                <div class="glass-card p-8 md:p-10 reveal flex flex-col">
-                    <div class="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-3xl text-zinc-900 dark:text-white mb-8">
-                        <i class="fa-solid fa-map"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-heading mb-6">1. TikTok Strategy</h4>
-                    <ul class="space-y-4 text-body font-medium flex-1">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s1_1">Nghiên cứu thị trường</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s1_2">Phân tích đối thủ</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s1_3">Xây dựng concept kênh</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s1_4">Lên chiến lược nội dung</span></li>
-                    </ul>
-                </div>
-
-                <!-- S2 -->
-                <div class="glass-card p-8 md:p-10 reveal flex flex-col relative overflow-hidden border-zinc-400 dark:border-accent/30 shadow-[0_0_30px_rgba(204,255,0,0.1)]">
-                    <div class="w-16 h-16 rounded-2xl bg-zinc-900 dark:bg-accent/20 flex items-center justify-center text-3xl text-white dark:text-accent mb-8 relative z-10">
-                        <i class="fa-solid fa-film"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-heading mb-6 relative z-10">2. Video Production</h4>
-                    <ul class="space-y-4 text-body font-medium flex-1 relative z-10">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s2_1">Lên idea & kịch bản</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s2_2">Quay video tại doanh nghiệp</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s2_3">Dựng video chuyên nghiệp</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s2_4">Tối ưu hook thu hút</span></li>
-                    </ul>
-                </div>
-
-                <!-- S3 -->
-                <div class="glass-card p-8 md:p-10 reveal flex flex-col">
-                    <div class="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-3xl text-zinc-900 dark:text-white mb-8">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-heading mb-6">3. Social Management</h4>
-                    <ul class="space-y-4 text-body font-medium flex-1">
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s3_1">Đăng video & viết caption</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s3_2">Tối ưu hashtag</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s3_3">Theo dõi hiệu quả</span></li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-highlight mt-1"></i> <span data-i18n="s3_4">Báo cáo hàng tháng</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CASE STUDY -->
-    <section id="case-study" class="py-24 bg-zinc-100/50 dark:bg-black/40 relative z-10 border-y border-zinc-200 dark:border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-bold text-heading" data-i18n="cs_title">Câu chuyện thành công</h2>
-            </div>
-            
-            <div class="glass-card p-8 md:p-12 grid lg:grid-cols-2 gap-12 items-center reveal">
-                <div class="space-y-8">
-                    <div>
-                        <div class="inline-block px-4 py-1.5 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 rounded-full text-xs font-bold uppercase tracking-widest mb-4">Case Study</div>
-                        <h3 class="text-4xl md:text-5xl font-display font-black text-heading">Unite Staycation</h3>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="p-6 rounded-2xl bg-white dark:bg-white/5 border border-zinc-200 dark:border-white/10 shadow-sm">
-                            <div class="text-sm font-bold uppercase text-zinc-500 mb-2 flex items-center gap-2">
-                                <i class="fa-regular fa-clock"></i> <span data-i18n="cs_before_label">Trước khi hợp tác</span>
-                            </div>
-                            <p class="text-heading font-medium" data-i18n="cs_before">Chưa có mặt trên nền tảng TikTok và độ nhận diện rất thấp.</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-zinc-900 dark:bg-accent/10 border border-zinc-900 dark:border-accent/20 text-white shadow-lg">
-                            <div class="text-sm font-bold uppercase text-highlight mb-2 flex items-center gap-2">
-                                <i class="fa-solid fa-rocket"></i> <span data-i18n="cs_after_label">Kết quả (Sau 3 tháng)</span>
-                            </div>
-                            <p class="font-medium text-zinc-300" data-i18n="cs_after">Đạt 2.398 followers, video viral hàng trăm nghìn view. Khách hàng từ TikTok chiếm >50%. Doanh thu tăng trưởng hơn 60%.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats Grid inside Case Study -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-panel p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-display font-black text-heading mb-1">2.3K+</div>
-                        <div class="text-xs font-semibold text-body uppercase" data-i18n="cs_stat1">Followers mới</div>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-display font-black text-heading mb-1">100K+</div>
-                        <div class="text-xs font-semibold text-body uppercase" data-i18n="cs_stat2">Views Video viral</div>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl text-center border-zinc-400 dark:border-accent/30 shadow-md">
-                        <div class="text-4xl font-display font-black text-highlight mb-1">>50%</div>
-                        <div class="text-xs font-semibold text-body uppercase" data-i18n="cs_stat3">Lượng khách từ TikTok</div>
-                    </div>
-                    <div class="glass-panel p-6 rounded-2xl text-center border-zinc-400 dark:border-accent/30 shadow-md">
-                        <div class="text-4xl font-display font-black text-highlight mb-1">+60%</div>
-                        <div class="text-xs font-semibold text-body uppercase" data-i18n="cs_stat4">Tăng doanh thu</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING PACKAGES (Clean Cards) -->
-    <section id="pricing" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-bold text-heading mb-4" data-i18n="price_title">Bảng Dịch Vụ</h2>
-                <p class="text-body font-medium max-w-2xl mx-auto" data-i18n="price_subtitle">Các gói cơ bản đáp ứng nhu cầu. Báo giá chi tiết theo từng hạng mục cụ thể khi tư vấn.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- TRIAL -->
-                <div class="glass-card p-8 flex flex-col reveal">
-                    <div class="text-sm font-bold uppercase tracking-wider text-body mb-2">TRIAL</div>
-                    <div class="text-3xl font-display font-black text-heading mb-6 border-b border-zinc-200 dark:border-white/10 pb-4">3 Video</div>
-                    <ul class="space-y-4 flex-1 text-sm text-body font-medium">
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Idea & Script</li>
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Quay & Dựng</li>
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Bàn giao sản phẩm cuối</li>
-                    </ul>
-                </div>
-
-                <!-- BASIC -->
-                <div class="glass-card p-8 flex flex-col reveal">
-                    <div class="text-sm font-bold uppercase tracking-wider text-body mb-2">BASIC</div>
-                    <div class="text-3xl font-display font-black text-heading mb-6 border-b border-zinc-200 dark:border-white/10 pb-4">10 Video <span class="text-sm font-medium text-body">/tháng</span></div>
-                    <ul class="space-y-4 flex-1 text-sm text-body font-medium">
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Idea & Script</li>
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Quay & Dựng</li>
-                        <li><i class="fa-solid fa-check text-zinc-400 dark:text-white/30 mr-2"></i> Bàn giao sản phẩm cuối</li>
-                    </ul>
-                </div>
-
-                <!-- STANDARD -->
-                <div class="glass-card p-8 flex flex-col reveal border-zinc-900 dark:border-accent/40 shadow-xl relative transform lg:-translate-y-4 bg-white dark:bg-zinc-900">
-                    <div class="absolute top-0 right-0 bg-zinc-900 text-white dark:bg-accent dark:text-black text-xs font-bold px-4 py-1.5 rounded-bl-xl">POPULAR</div>
-                    <div class="text-sm font-bold uppercase tracking-wider text-highlight mb-2">STANDARD</div>
-                    <div class="text-3xl font-display font-black text-heading mb-6 border-b border-zinc-200 dark:border-white/10 pb-4">15 Video <span class="text-sm font-medium text-body">/tháng</span></div>
-                    <ul class="space-y-4 flex-1 text-sm text-heading font-medium">
-                        <li><i class="fa-solid fa-check text-highlight mr-2 text-lg"></i> Idea & Script</li>
-                        <li><i class="fa-solid fa-check text-highlight mr-2 text-lg"></i> Quay & Dựng</li>
-                        <li><i class="fa-solid fa-check text-highlight mr-2 text-lg"></i> Đăng bài & Quản lý kênh</li>
-                    </ul>
-                    <button class="w-full mt-8 btn-primary !py-3 !text-sm">Chọn Gói Này</button>
-                </div>
-
-                <!-- PREMIUM -->
-                <div class="glass-card p-8 flex flex-col reveal">
-                    <div class="text-sm font-bold uppercase tracking-wider text-zinc-800 dark:text-zinc-300 mb-2">PREMIUM</div>
-                    <div class="text-3xl font-display font-black text-heading mb-6 border-b border-zinc-200 dark:border-white/10 pb-4">20 Video <span class="text-sm font-medium text-body">/tháng</span></div>
-                    <ul class="space-y-4 flex-1 text-sm text-body font-medium">
-                        <li><i class="fa-solid fa-check text-zinc-800 dark:text-zinc-300 mr-2"></i> <span class="text-heading font-bold">Chiến lược kênh</span></li>
-                        <li><i class="fa-solid fa-check text-zinc-800 dark:text-zinc-300 mr-2"></i> Idea & Script</li>
-                        <li><i class="fa-solid fa-check text-zinc-800 dark:text-zinc-300 mr-2"></i> Quay & Dựng</li>
-                        <li><i class="fa-solid fa-check text-zinc-800 dark:text-zinc-300 mr-2"></i> Đăng bài & Quản lý kênh</li>
-                        <li><i class="fa-solid fa-check text-zinc-800 dark:text-zinc-300 mr-2"></i> Theo dõi & Báo cáo</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER / CONTACT -->
-    <section id="contact" class="py-24 relative z-10 border-t border-zinc-200 dark:border-white/5 bg-zinc-100/50 dark:bg-black/40">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <div class="w-20 h-20 mx-auto rounded-full border-2 border-zinc-900 dark:border-accent flex items-center justify-center font-display font-bold text-3xl text-zinc-900 dark:text-accent mb-8 shadow-lg">U.</div>
-            <h2 class="text-5xl md:text-6xl font-display font-black text-heading mb-10" data-i18n="contact_title">Bắt đầu chiến dịch của bạn.</h2>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
-                <a href="mailto:contact@unitemedia.vn" class="btn-secondary w-full sm:w-auto">
-                    <i class="fa-regular fa-envelope text-xl"></i> Email Us
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-10 md:gap-20 mt-16 bg-brand-dark/50 backdrop-blur-md p-6 rounded-3xl inline-flex mx-auto border border-brand-light/10">
+                <a href="mailto:contact@unitemedia.vn" class="text-brand-light text-xl md:text-2xl font-serif italic hover:text-brand-pink transition-colors flex items-center gap-4">
+                    <i class="fa-regular fa-envelope"></i> hello@unitemedia.vn
                 </a>
-                <a href="tel:0123456789" class="btn-primary w-full sm:w-auto">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> Chat Zalo
+                <a href="https://zalo.me/0123456789" class="text-brand-light text-xl md:text-2xl font-serif italic hover:text-brand-sage transition-colors flex items-center gap-4">
+                    <i class="fa-brands fa-whatsapp"></i> Zalo / Hotline
                 </a>
             </div>
+        </div>
 
-            <div class="flex justify-center gap-6 border-t border-zinc-200 dark:border-white/10 pt-10">
-                <a href="#" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-heading transition-colors text-xl shadow-sm hover:shadow-md"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="#" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-heading transition-colors text-xl shadow-sm hover:shadow-md"><i class="fa-brands fa-facebook-f"></i></a>
+        <!-- Marquee Bottom -->
+        <div class="mt-auto pt-20 relative z-30">
+            <div class="border-t border-brand-light/20 py-5">
+                <div class="ticker-wrapper">
+                    <div class="ticker-content text-brand-light/40 font-display text-[11px] tracking-[0.4em] uppercase font-bold">
+                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                    </div>
+                </div>
             </div>
-            <p class="mt-8 text-sm text-body font-medium">© 2026 Unite Media Team. All rights reserved.</p>
+            <div class="text-center text-brand-light/30 text-[10px] font-bold tracking-[0.2em] uppercase mt-6">
+                © 2026 UNITE MEDIA. EDITORIAL DESIGN.
+            </div>
         </div>
     </section>
 
     <!-- SCRIPTS -->
     <script>
-        // --- Dark/Light Mode Toggle Logic ---
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            
-            // Lấy preference lưu lại (nếu có server/localstorage)
-            // localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        }
-
         // --- Scroll Reveal Logic ---
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
+            var reveals = document.querySelectorAll(".reveal-up");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
@@ -633,180 +477,107 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Trigger on load with slight delay for smoothness
         setTimeout(reveal, 100); 
+
+        // --- Navbar Sticky Logic ---
+        const navbarContainer = document.getElementById('navbar-container');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Khi cuộn xuống: Thu nhỏ padding, tăng độ mờ để dễ đọc hơn
+                navbarContainer.classList.remove('py-3', 'md:py-4', 'bg-brand-light/60');
+                navbarContainer.classList.add('py-2', 'md:py-3', 'bg-brand-light/80', 'shadow-xl');
+            } else {
+                // Khi ở trên cùng: Trả về trạng thái kính mờ mềm mại
+                navbarContainer.classList.add('py-3', 'md:py-4', 'bg-brand-light/60');
+                navbarContainer.classList.remove('py-2', 'md:py-3', 'bg-brand-light/80', 'shadow-xl');
+            }
+        });
 
         // --- Multi-Language (i18n) Logic ---
         const translations = {
             vi: {
                 nav_about: "Về chúng tôi",
                 nav_services: "Dịch vụ",
-                nav_process: "Quy trình",
-                nav_pricing: "Bảng giá",
+                nav_process: "Case Study",
                 nav_contact: "Liên hệ",
-                hero_subtitle: "Social Media Strategy – Video Production – TikTok Growth",
-                hero_slogan: "Giải pháp truyền thông <br class='hidden sm:block'> cho doanh nghiệp.",
-                hero_desc: "Chúng tôi đảm nhận mọi việc từ lên ý tưởng, sản xuất và phân phối, gửi đến tay khách hàng những sản phẩm đã được hoàn thiện chỉnh chu trên đa nền tảng.",
-                hero_tag_1: "Creative",
-                hero_tag_2: "Không an toàn. Không rập khuôn.",
-                btn_explore: "Khám phá Dịch vụ",
-                btn_casestudy: "Xem Case Study",
-                stat_views: "Lượt xem",
-                stat_1: "Doanh nghiệp",
-                stat_2: "Video sản xuất",
-                stat_3: "Tổng lượt xem",
-                about_label: "Về chúng tôi",
-                about_desc: "Unite Media Team là đội ngũ chuyên xây dựng và phát triển hệ thống social media cho doanh nghiệp, đặc biệt tập trung vào việc xây kênh TikTok tạo chuyển đổi thực tế.",
-                vision_title: "Tầm nhìn",
-                vision_desc: "Nơi mỗi video không chỉ tạo ra lượt xem mà còn tạo ra giá trị kinh doanh thực sự.",
-                mission_title: "Sứ mệnh",
-                mission_desc: "Giúp doanh nghiệp xây dựng hệ thống nội dung hiệu quả qua chiến lược bài bản và tối ưu dữ liệu.",
-                value_title: "Chuỗi giá trị tạo ra cho doanh nghiệp:",
-                val1_title: "Chiến lược",
-                val1_desc: "Nội dung phù hợp định vị.",
-                val2_title: "Sản xuất",
-                val2_desc: "Video thu hút, dễ lan truyền.",
-                val3_title: "Chuyển đổi",
-                val3_desc: "Biến view thành doanh thu.",
-                val4_title: "Đồng hành",
-                val4_desc: "Cùng phát triển dài hạn.",
-                core_title: "Giá trị cốt lõi",
-                cv1_title: "Hiệu quả (Performance)",
-                cv1_desc: "Tập trung vào kết quả thực tế, video tạo ra tăng trưởng về thương hiệu và khách hàng.",
-                cv2_title: "Sáng tạo (Creativity)",
-                cv2_desc: "Luôn tìm kiếm ý tưởng mới, format mới và cách kể chuyện hấp dẫn.",
-                cv3_title: "Chiến lược (Strategy)",
-                cv3_desc: "Nội dung xây dựng dựa trên nghiên cứu thị trường và hành vi người dùng rõ ràng.",
-                target_title: "Doanh nghiệp bạn đang gặp vấn đề?",
-                pain_1: "Không biết làm nội dung TikTok",
-                pain_2: "Không có đội quay dựng chuyên nghiệp",
-                pain_3: "Video đăng mãi nhưng không viral",
-                pain_4: "Không biết cách chuyển đổi khách hàng",
-                target_solution: "Chúng tôi ở đây để giải quyết tất cả vấn đề đó!",
-                services_label: "Giải pháp B2B",
-                services_title: "Dịch vụ chúng tôi cung cấp",
-                s1_1: "Nghiên cứu thị trường",
-                s1_2: "Phân tích đối thủ",
-                s1_3: "Xây dựng concept kênh",
-                s1_4: "Lên chiến lược nội dung",
-                s2_1: "Lên idea & kịch bản",
-                s2_2: "Quay video tại doanh nghiệp",
-                s2_3: "Dựng video chuyên nghiệp",
-                s2_4: "Tối ưu hook thu hút",
-                s3_1: "Đăng video & viết caption",
-                s3_2: "Tối ưu hashtag",
-                s3_3: "Theo dõi hiệu quả",
-                s3_4: "Báo cáo hàng tháng",
-                cs_title: "Câu chuyện thành công",
-                cs_before_label: "Trước khi hợp tác",
-                cs_before: "Chưa có mặt trên nền tảng TikTok và độ nhận diện rất thấp.",
-                cs_after_label: "Kết quả (Sau 3 tháng)",
-                cs_after: "Đạt 2.398 followers, video viral hàng trăm nghìn view. Khách hàng từ TikTok chiếm >50%. Doanh thu tăng trưởng hơn 60%.",
-                cs_stat1: "Followers mới",
-                cs_stat2: "Views Video viral",
-                cs_stat3: "Lượng khách từ TikTok",
-                cs_stat4: "Tăng doanh thu",
-                price_title: "Bảng Dịch Vụ",
-                price_subtitle: "Các gói cơ bản đáp ứng nhu cầu. Báo giá chi tiết theo từng hạng mục cụ thể khi tư vấn.",
-                contact_title: "Bắt đầu chiến dịch của bạn."
+                hero_word1: "UNITE",
+                hero_word2: "MEDIA",
+                hero_word3: "TEAM.",
+                hero_subtitle: "Digital Agency",
+                hero_desc: "Giải pháp truyền thông toàn diện. Bức tranh thương hiệu của bạn được vẽ bởi những nhà sáng tạo thế hệ mới.",
+                about_label: "Triết lý sáng tạo",
+                mission_title: "\"Mỗi nội dung đều có một nhịp điệu riêng.\"",
+                about_desc_1: "Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. Unite Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.",
+                about_desc_2: "Chúng tôi giúp thương hiệu của bạn \"nở rộ\" đúng thời điểm, tiếp cận đúng người và biến sự chú ý thành tăng trưởng bền vững.",
+                stat_2: "Video Sản Xuất",
+                stat_3: "Lượt Xem",
+                core_title: "Hệ Giá Trị.",
+                core_subtitle: "Bảng màu tạo nên sự khác biệt.",
+                cv1_title: "Hiệu Quả",
+                cv1_desc: "Tập trung vào tỷ lệ chuyển đổi và doanh thu.",
+                cv2_title: "Sáng Tạo",
+                cv2_desc: "Kể câu chuyện thương hiệu độc bản.",
+                cv3_title: "Chiến Lược",
+                cv3_desc: "Định hướng nội dung dựa trên data.",
+                cv4_title: "Đồng Hành",
+                cv4_desc: "Sát cánh như một team in-house.",
+                services_title: "Giải Pháp.",
+                s1_desc: "Nghiên cứu thị trường, định vị concept kênh và xây dựng tuyến nội dung mang tính chiến lược dài hạn.",
+                s2_desc: "Biến ý tưởng thành khung hình. Kịch bản sắc bén, quay dựng chuyên nghiệp và tối ưu hook thu hút người xem.",
+                s3_desc: "Chăm sóc kênh toàn diện. Đăng tải tối ưu thuật toán, quản lý tương tác và báo cáo hiệu suất hàng tuần.",
+                price_title: "Bảng giá.",
+                price_subtitle: "Minh bạch. Rõ ràng. Hiệu quả.",
+                contact_title: "LET'S <br> <span class='italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal'>CREATE.</span>"
             },
             en: {
-                nav_about: "About Us",
+                nav_about: "About",
                 nav_services: "Services",
-                nav_process: "Process",
-                nav_pricing: "Pricing",
-                nav_contact: "Contact Us",
-                hero_subtitle: "Social Media Strategy – Video Production – TikTok Growth",
-                hero_slogan: "Media Solutions <br class='hidden sm:block'> for Businesses.",
-                hero_desc: "We handle everything from ideation, production to distribution, delivering fully polished products across multiple platforms to our clients.",
-                hero_tag_1: "Creative",
-                hero_tag_2: "Unsafe. Unconventional.",
-                btn_explore: "Explore Services",
-                btn_casestudy: "View Case Study",
-                stat_views: "Total Views",
-                stat_1: "Partnered Brands",
+                nav_process: "Work",
+                nav_contact: "Contact",
+                hero_word1: "UNITE",
+                hero_word2: "MEDIA",
+                hero_word3: "TEAM.",
+                hero_subtitle: "Digital Agency",
+                hero_desc: "Comprehensive media solutions. Your brand's picture is painted by the new generation of creators.",
+                about_label: "Creative Philosophy",
+                mission_title: "\"Every content has its own rhythm.\"",
+                about_desc_1: "In a fast-scrolling world, we create pauses. Unite Media Team doesn't produce industrial content; we forge original values.",
+                about_desc_2: "We help your brand \"bloom\" at the right time, reach the right people, and turn attention into sustainable growth.",
                 stat_2: "Videos Produced",
                 stat_3: "Total Views",
-                about_label: "About Us",
-                about_desc: "Unite Media Team specializes in building and developing social media systems for businesses, with a strong focus on TikTok channel growth that converts.",
-                vision_title: "Vision",
-                vision_desc: "Where every video creates not just views but tangible business value.",
-                mission_title: "Mission",
-                mission_desc: "Helping businesses build effective content systems through methodical strategy and data optimization.",
-                value_title: "The value chain we create:",
-                val1_title: "Strategy",
-                val1_desc: "Content aligned with brand.",
-                val2_title: "Production",
-                val2_desc: "Engaging, viral videos.",
-                val3_title: "Conversion",
-                val3_desc: "Turn views into revenue.",
-                val4_title: "Partnership",
-                val4_desc: "Long-term co-growth.",
-                core_title: "Core Values",
+                core_title: "Core Values.",
+                core_subtitle: "The palette that makes our difference.",
                 cv1_title: "Performance",
-                cv1_desc: "Focus on real results, videos that generate brand and customer growth.",
+                cv1_desc: "Focusing on conversion rates and revenue.",
                 cv2_title: "Creativity",
-                cv2_desc: "Always seeking new ideas, formats, and compelling storytelling.",
+                cv2_desc: "Telling your brand's unique story.",
                 cv3_title: "Strategy",
-                cv3_desc: "Content built on clear market research and user behavior.",
-                target_title: "Facing these problems?",
-                pain_1: "Don't know how to make TikTok content",
-                pain_2: "No professional production team",
-                pain_3: "Videos posted but not viral",
-                pain_4: "Don't know how to convert customers",
-                target_solution: "We are here to solve all those problems!",
-                services_label: "B2B Solutions",
-                services_title: "Services We Provide",
-                s1_1: "Market Research",
-                s1_2: "Competitor Analysis",
-                s1_3: "Channel Concept",
-                s1_4: "Content Strategy",
-                s2_1: "Idea & Scripting",
-                s2_2: "On-site Video Shooting",
-                s2_3: "Professional Editing",
-                s2_4: "Attractive Hook Optimization",
-                s3_1: "Video Posting & Captions",
-                s3_2: "Hashtag Optimization",
-                s3_3: "Performance Tracking",
-                s3_4: "Monthly Reporting",
-                cs_title: "Success Story",
-                cs_before_label: "Before Partnership",
-                cs_before: "No presence on TikTok and very low brand awareness.",
-                cs_after_label: "Result (After 3 months)",
-                cs_after: "Reached 2,398 followers, viral videos with 100k+ views. TikTok customers account for >50%. Revenue increased by over 60%.",
-                cs_stat1: "New Followers",
-                cs_stat2: "Viral Video Views",
-                cs_stat3: "Customers from TikTok",
-                cs_stat4: "Revenue Growth",
-                price_title: "Pricing Packages",
-                price_subtitle: "Basic packages to meet needs. Detailed quotes for specific items provided during consultation.",
-                contact_title: "Start your campaign."
+                cv3_desc: "Content direction based on data.",
+                cv4_title: "Partnership",
+                cv4_desc: "Working side-by-side like an in-house team.",
+                services_title: "Solutions.",
+                s1_desc: "Market research, channel concept positioning, and building long-term strategic content pipelines.",
+                s2_desc: "Turning ideas into frames. Sharp scripts, professional shooting, and optimized hooks to attract viewers.",
+                s3_desc: "Comprehensive channel care. Algorithm-optimized posting, engagement management, and weekly performance reports.",
+                price_title: "Pricing.",
+                price_subtitle: "Transparent. Clear. Effective.",
+                contact_title: "LET'S <br> <span class='italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal'>CREATE.</span>"
             }
         };
 
-        function detectLanguage() {
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.startsWith('en')) {
-                setLang('en');
-            } else {
-                setLang('vi');
-            }
-        }
-
         function setLang(lang) {
-            // Update UI buttons based on theme classes
             const btnVi = document.getElementById('btn-vi');
             const btnEn = document.getElementById('btn-en');
             
-            // Reset both
-            btnVi.className = "lang-btn text-xs font-bold px-3 py-1.5 rounded-full transition-colors text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white";
-            btnEn.className = "lang-btn text-xs font-bold px-3 py-1.5 rounded-full transition-colors text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white";
+            btnVi.className = "opacity-50 hover:opacity-100 transition-all border-b border-transparent";
+            btnEn.className = "opacity-50 hover:opacity-100 transition-all border-b border-transparent";
             
-            // Set active
-            const activeBtn = lang === 'vi' ? btnVi : btnEn;
-            activeBtn.className = "lang-btn text-xs font-bold px-3 py-1.5 rounded-full transition-colors bg-white text-black dark:bg-black dark:text-white shadow-sm";
+            if(lang === 'vi') {
+                btnVi.className = "border-b border-current pb-0.5 transition-all";
+            } else {
+                btnEn.className = "border-b border-current pb-0.5 transition-all";
+            }
 
-            // Replace Text in DOM
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -816,10 +587,14 @@
             });
         }
 
-        // Khởi tạo
+        // Auto detect on load
         window.onload = () => {
-            // Default load set to Vietnamese as requested, auto-detect active
-            setLang('vi'); 
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('en')) {
+                setLang('en');
+            } else {
+                setLang('vi');
+            }
         };
     </script>
 </body>
