@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unite Media Team | Floral Editorial Portfolio</title>
+    <title>JAN Media Team | Floral Editorial Portfolio</title>
     
     <!-- Fonts: Playfair Display (Serif Tạp chí), Space Grotesk (Display), Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,14 +65,14 @@
 
         /* Fluid Typography (Chữ tự to/nhỏ theo màn hình) */
         .title-huge {
-            font-size: clamp(4.5rem, 14vw, 15rem);
-            line-height: 0.8;
+            font-size: clamp(3.5rem, 13vw, 15rem);
+            line-height: 0.85;
             letter-spacing: -0.03em;
         }
         
         .title-large {
-            font-size: clamp(3.5rem, 8vw, 8rem);
-            line-height: 0.85;
+            font-size: clamp(2.75rem, 9vw, 8rem);
+            line-height: 0.9;
             letter-spacing: -0.02em;
         }
 
@@ -118,28 +118,44 @@
             animation: spin 20s linear infinite;
         }
 
-        /* Ticker */
+        /* Ticker Text Footer */
         .ticker-wrapper { overflow: hidden; white-space: nowrap; display: flex; }
         .ticker-content { display: inline-flex; animation: ticker 30s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
+        /* Hiệu ứng trượt vòng lặp cho Video (Showcase) */
+        .video-ticker-track {
+            display: flex;
+            width: max-content;
+            /* Tăng thời gian lên 80s vì dải băng bây giờ có tới 5 video, cần chạy chậm lại cho mượt */
+            animation: scroll-video 80s linear infinite; 
+        }
+        /* Tự động tạm dừng khi rê chuột vào để người dùng dễ dàng click link */
+        .video-ticker-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scroll-video {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Dịch chuyển một nửa tổng track để tạo vòng lặp */
+        }
+
         ::selection { background-color: #F2A0B6; color: #01260E; }
     </style>
 </head>
 <body class="antialiased font-sans">
 
     <!-- MINIMAL NAVBAR (Kính mờ - Glassmorphism) -->
-    <nav id="navbar" class="fixed top-4 left-4 right-4 z-50 transition-all duration-300">
-        <div id="navbar-container" class="max-w-screen-2xl mx-auto bg-brand-light/60 backdrop-blur-xl border border-white/60 shadow-lg rounded-full px-6 py-3 md:py-4 flex justify-between items-center text-brand-dark transition-all duration-300">
-            <a href="#" class="font-serif font-bold text-xl md:text-2xl tracking-tighter uppercase leading-none hover:italic transition-all">
-                UNITE <br> MEDIA.
+    <nav id="navbar" class="fixed top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 z-50 transition-all duration-300">
+        <div id="navbar-container" class="max-w-screen-2xl mx-auto bg-brand-light/60 backdrop-blur-xl border border-white/60 shadow-lg rounded-full px-5 py-3 md:py-4 flex justify-between items-center text-brand-dark transition-all duration-300">
+            <a href="#" class="font-serif font-bold text-lg md:text-2xl tracking-tighter uppercase leading-none hover:italic transition-all">
+                JAN <br> MEDIA.
             </a>
 
             <!-- Trình bày Menu ngang cho dễ nhìn trong thanh kính -->
             <div class="hidden md:flex items-center gap-8 text-[10px] font-bold tracking-[0.2em] uppercase">
                 <a href="#about" class="hover:text-brand-pink transition-colors" data-i18n="nav_about">Về chúng tôi</a>
                 <a href="#services" class="hover:text-brand-pink transition-colors" data-i18n="nav_services">Dịch vụ</a>
-                <a href="#projects" class="hover:text-brand-pink transition-colors" data-i18n="nav_process">Case Study</a>
+                <a href="#showcase" class="hover:text-brand-pink transition-colors" data-i18n="nav_showcase">Sản Phẩm</a>
                 <a href="#contact" class="hover:text-brand-pink transition-colors" data-i18n="nav_contact">Liên hệ</a>
             </div>
 
@@ -156,29 +172,29 @@
         
         <!-- LAYER 1: Text rỗng (Dưới cùng) -->
         <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-0 px-4">
-            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">UNITE</h1>
+            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full transform -translate-y-[8vh] md:-translate-y-[10vh]">JAN</h1>
             <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">MEDIA</h1>
-            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full">TEAM.</h1>
+            <h1 class="title-huge font-serif text-outline opacity-40 text-center w-full transform translate-y-[8vh] md:translate-y-[10vh]">TEAM.</h1>
         </div>
 
         <!-- LAYER 2: Floral Image (Catananche) -->
-        <div class="absolute z-10 w-[95vw] md:w-[45vw] max-w-[700px] top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div class="absolute z-10 w-[85vw] md:w-[45vw] max-w-[700px] top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
             <!-- Ảnh hoa Catananche -->
             <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/20260319_160520_0000.png" 
-                 class="w-full h-auto drop-shadow-[0_30px_50px_rgba(1,38,14,0.3)] float-slow" 
+                 class="w-full h-auto drop-shadow-[0_20px_40px_rgba(1,38,14,0.3)] md:drop-shadow-[0_30px_50px_rgba(1,38,14,0.3)] float-slow" 
                  alt="Hoa trang trí Hero Catananche">
         </div>
 
         <!-- LAYER 3: Text đặc (Trên cùng) -->
         <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-20 px-4">
-            <h1 class="title-huge font-serif text-brand-dark text-center w-full drop-shadow-md" data-i18n="hero_word1">UNITE</h1>
+            <h1 class="title-huge font-serif text-brand-dark text-center w-full drop-shadow-md transform -translate-y-[8vh] md:-translate-y-[10vh]" data-i18n="hero_word1">JAN</h1>
             <!-- Chữ MEDIA trong suốt để giữ chuẩn khoảng cách, cho phép nhìn xuyên qua lớp hoa -->
             <h1 class="title-huge font-serif text-transparent text-center w-full select-none" data-i18n="hero_word2">MEDIA</h1>
-            <h1 class="title-huge font-serif text-brand-pink text-center w-full italic drop-shadow-md" data-i18n="hero_word3">TEAM.</h1>
+            <h1 class="title-huge font-serif text-brand-pink text-center w-full italic drop-shadow-md transform translate-y-[8vh] md:translate-y-[10vh]" data-i18n="hero_word3">TEAM.</h1>
         </div>
 
         <!-- Circular Text Badge -->
-        <div class="absolute bottom-12 right-6 md:bottom-16 md:right-16 z-30 w-32 md:w-40 aspect-square spin-slow">
+        <div class="absolute bottom-6 right-4 md:bottom-16 md:right-16 z-30 w-24 md:w-40 aspect-square spin-slow">
             <svg viewBox="0 0 100 100" class="w-full h-full text-brand-dark fill-current overflow-visible">
                 <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
                 <text font-size="10.5" font-family="Space Grotesk" font-weight="bold" letter-spacing="0.1em" class="uppercase">
@@ -190,19 +206,19 @@
         </div>
 
         <!-- Intro Text Góc Trái -->
-        <div class="absolute bottom-12 left-6 md:left-12 z-30 max-w-[280px]">
-            <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-pink mb-3" data-i18n="hero_subtitle">Digital Agency</p>
-            <p class="text-sm font-light text-brand-dark/80 leading-relaxed" data-i18n="hero_desc">
+        <div class="absolute bottom-6 left-4 md:bottom-12 md:left-12 z-30 max-w-[200px] md:max-w-[280px] bg-brand-light/40 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-3 md:p-0 rounded-2xl md:rounded-none border border-white/20 md:border-transparent">
+            <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-pink mb-2 md:mb-3" data-i18n="hero_subtitle">Digital Agency</p>
+            <p class="text-xs md:text-sm font-light text-brand-dark/90 md:text-brand-dark/80 leading-relaxed" data-i18n="hero_desc">
                 Giải pháp truyền thông toàn diện. Bức tranh thương hiệu của bạn được vẽ bởi những nhà sáng tạo thế hệ mới.
             </p>
         </div>
     </section>
 
     <!-- PHILOSOPHY / ABOUT (Sự kết hợp giữa Hoa và Chữ) -->
-    <section id="about" class="py-32 bg-brand-sage relative overflow-hidden">
+    <section id="about" class="py-20 md:py-32 bg-brand-sage relative overflow-hidden">
         
         <!-- Bông hoa Anthyllis (Mọc ngang từ góc trái) -->
-        <div class="absolute -left-[10vw] top-[5vh] w-[60vw] md:w-[40vw] max-w-[550px] z-0 opacity-70 pointer-events-none transform -rotate-6">
+        <div class="absolute -left-[30vw] md:-left-[10vw] top-[5vh] w-[80vw] md:w-[40vw] max-w-[550px] z-0 opacity-20 md:opacity-70 pointer-events-none transform -rotate-6">
             <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/anthyllismarit.png" 
                  class="w-full h-auto drop-shadow-2xl float-medium" 
                  alt="Hoa trang trí About Anthyllis">
@@ -213,25 +229,25 @@
                 
                 <!-- Left text -->
                 <div class="md:col-span-6 md:col-start-2 flex flex-col justify-center reveal-up">
-                    <div class="text-[10px] uppercase font-bold tracking-[0.2em] text-brand-dark/50 mb-6" data-i18n="about_label">Triết lý sáng tạo</div>
-                    <h2 class="text-brand-dark font-serif text-4xl md:text-6xl italic leading-[1.1] mb-8" data-i18n="mission_title">
+                    <div class="text-[10px] uppercase font-bold tracking-[0.2em] text-brand-dark/80 mb-6" data-i18n="about_label">Triết lý sáng tạo</div>
+                    <h2 class="text-brand-dark font-serif text-4xl md:text-6xl italic leading-[1.1] mb-6 md:mb-8" data-i18n="mission_title">
                         "Mỗi nội dung đều có một nhịp điệu riêng."
                     </h2>
-                    <p class="text-brand-dark/80 font-light text-lg mb-6 leading-relaxed" data-i18n="about_desc_1">
-                        Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. Unite Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.
+                    <p class="text-brand-dark/90 font-light text-base md:text-lg mb-4 md:mb-6 leading-relaxed" data-i18n="about_desc_1">
+                        Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. JAN Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.
                     </p>
-                    <p class="text-brand-dark/80 font-light text-lg leading-relaxed" data-i18n="about_desc_2">
+                    <p class="text-brand-dark/90 font-light text-base md:text-lg leading-relaxed" data-i18n="about_desc_2">
                         Chúng tôi giúp thương hiệu của bạn "nở rộ" đúng thời điểm, tiếp cận đúng người và biến sự chú ý thành tăng trưởng bền vững.
                     </p>
                     
-                    <div class="mt-12 flex gap-16 border-t border-brand-dark/20 pt-8">
+                    <div class="mt-8 md:mt-12 flex flex-col sm:flex-row gap-6 sm:gap-16 border-t border-brand-dark/20 pt-8">
                         <div>
                             <div class="font-serif text-5xl text-brand-dark mb-1">300+</div>
-                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/60" data-i18n="stat_2">Video Sản Xuất</div>
+                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/80" data-i18n="stat_2">Video Sản Xuất</div>
                         </div>
                         <div>
                             <div class="font-serif text-5xl text-brand-pink mb-1">5M+</div>
-                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/60" data-i18n="stat_3">Lượt Xem</div>
+                            <div class="text-[10px] uppercase tracking-widest font-bold text-brand-dark/80" data-i18n="stat_3">Lượt Xem</div>
                         </div>
                     </div>
                 </div>
@@ -239,7 +255,6 @@
                 <!-- Right Overlapping Image (Aesthetic) -->
                 <div class="md:col-span-4 md:col-start-9 relative reveal-up delay-200 mt-12 md:mt-0">
                     <div class="aspect-[3/4] w-full bg-[#E9E1B5] p-3 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
-                        <!-- Đổi ảnh Workspace sang phong cách Nội thất tĩnh vật mộc mạc (Editorial Interior) -->
                         <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[10%]" alt="Creative Workspace">
                         <div class="absolute -bottom-6 -left-6 bg-brand-dark text-brand-light px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-xl">
                             Est. 2024
@@ -251,58 +266,286 @@
         </div>
     </section>
 
+    <!-- SHOWCASE / SẢN PHẨM (Video trượt ngang vòng lặp tối ưu PC/Mobile với 5 Video) -->
+    <section id="showcase" class="py-20 md:py-32 bg-brand-light relative overflow-hidden border-t border-brand-dark/10">
+        
+        <!-- Bông hoa nhẹ lót nền -->
+        <div class="absolute left-[-10vw] md:left-0 top-1/3 w-[50vw] md:w-[25vw] max-w-[400px] z-0 opacity-10 md:opacity-30 pointer-events-none transform rotate-12">
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/anthyllismarit.png" class="w-full h-auto drop-shadow-xl float-slow" alt="Background Flower">
+        </div>
 
+        <div class="max-w-screen-2xl mx-auto px-6 relative z-10 mb-12 md:mb-16">
+            <div class="text-center reveal-up">
+                <h2 class="title-large font-serif italic text-brand-dark" data-i18n="showcase_title">Featured Work.</h2>
+                <p class="text-brand-dark/70 text-xs tracking-[0.3em] uppercase font-bold mt-4" data-i18n="showcase_subtitle">Những nhịp điệu chuyển đổi</p>
+            </div>
+        </div>
+
+        <!-- Khung chứa Video (Băng chuyền Infinite Marquee) -->
+        <div class="w-full relative z-10 overflow-hidden py-10 md:py-16 reveal-up">
+            <div class="video-ticker-track">
+                
+                <!-- SET 1 (Nhóm 5 video gốc) -->
+                <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
+                    
+                    <!-- VIDEO 1 -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- VIDEO 2 -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- VIDEO 3 -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- VIDEO 4 (Instagram) -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- VIDEO 5 (Instagram) -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- SET 2 (Bản sao hoàn hảo của SET 1) -->
+                <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
+                    
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- SET 3 (Đảm bảo dải băng luôn kín trên màn hình siêu rộng 4K) -->
+                <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
+                    
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                        <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
+                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <div class="text-white">
+                                <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
+                                <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CORE VALUES (Bảng màu) -->
-    <section class="py-32 bg-brand-light">
-        <div class="max-w-screen-xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal-up border-b border-brand-dark/10 pb-8">
+    <section class="py-20 md:py-32 bg-brand-light relative overflow-hidden">
+        
+        <!-- Bông hoa 0001 mọc từ góc dưới bên phải -->
+        <div class="absolute right-[-20vw] md:right-[-10vw] bottom-[-5vh] w-[80vw] md:w-[50vw] max-w-[500px] z-0 opacity-10 md:opacity-50 pointer-events-none transform -rotate-12">
+            <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/20260319_160521_0001.png" 
+                 class="w-full h-auto drop-shadow-2xl float-slow" 
+                 alt="Hoa trang trí Hệ Giá Trị">
+        </div>
+
+        <div class="max-w-screen-xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 reveal-up border-b border-brand-dark/10 pb-6 md:pb-8 gap-4">
                 <h2 class="title-large font-serif text-brand-dark leading-none" data-i18n="core_title">Hệ Giá Trị.</h2>
-                <p class="text-sm font-semibold tracking-widest uppercase text-brand-pink max-w-xs text-right" data-i18n="core_subtitle">Bảng màu tạo nên sự khác biệt.</p>
+                <p class="text-xs md:text-sm font-semibold tracking-widest uppercase text-brand-pink max-w-xs md:text-right" data-i18n="core_subtitle">Bảng màu tạo nên sự khác biệt.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 <!-- Box 1 -->
                 <div class="reveal-up group">
-                    <div class="aspect-[2/3] bg-brand-pink flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
-                        <div class="w-10 h-10 rounded-full bg-brand-dark mt-8 shadow-inner"></div>
+                    <div class="aspect-auto md:aspect-[2/3] bg-brand-pink flex flex-col justify-between p-6 md:p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
+                        <div class="w-10 h-10 rounded-full bg-brand-dark mt-4 md:mt-8 shadow-inner mb-12 md:mb-0"></div>
                         <div>
-                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/50 mb-2">01</div>
-                            <h3 class="font-serif text-3xl text-brand-dark mb-3" data-i18n="cv1_title">Hiệu Quả</h3>
-                            <p class="text-sm text-brand-dark/80 font-medium" data-i18n="cv1_desc">Tập trung vào chuyển đổi và doanh thu.</p>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/70 mb-2">01</div>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-dark mb-2 md:mb-3" data-i18n="cv1_title">Hiệu Quả</h3>
+                            <p class="text-sm text-brand-dark/90 font-medium" data-i18n="cv1_desc">Tập trung vào chuyển đổi và doanh thu.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Box 2 -->
                 <div class="reveal-up delay-100 group">
-                    <div class="aspect-[2/3] bg-brand-olive flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
-                        <div class="w-10 h-10 rounded-full bg-brand-sand mt-8 shadow-inner"></div>
+                    <div class="aspect-auto md:aspect-[2/3] bg-brand-olive flex flex-col justify-between p-6 md:p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
+                        <div class="w-10 h-10 rounded-full bg-brand-sand mt-4 md:mt-8 shadow-inner mb-12 md:mb-0"></div>
                         <div>
-                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/50 mb-2">02</div>
-                            <h3 class="font-serif text-3xl text-brand-light mb-3" data-i18n="cv2_title">Sáng Tạo</h3>
-                            <p class="text-sm text-brand-light/80 font-light" data-i18n="cv2_desc">Kể câu chuyện thương hiệu độc bản.</p>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/70 mb-2">02</div>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-light mb-2 md:mb-3" data-i18n="cv2_title">Sáng Tạo</h3>
+                            <p class="text-sm text-brand-light/90 font-light" data-i18n="cv2_desc">Kể câu chuyện thương hiệu độc bản.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Box 3 -->
                 <div class="reveal-up delay-200 group">
-                    <div class="aspect-[2/3] bg-brand-sand flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
-                        <div class="w-10 h-10 rounded-full bg-brand-pink mt-8 shadow-inner"></div>
+                    <div class="aspect-auto md:aspect-[2/3] bg-brand-sand flex flex-col justify-between p-6 md:p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500">
+                        <div class="w-10 h-10 rounded-full bg-brand-pink mt-4 md:mt-8 shadow-inner mb-12 md:mb-0"></div>
                         <div>
-                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/50 mb-2">03</div>
-                            <h3 class="font-serif text-3xl text-brand-dark mb-3" data-i18n="cv3_title">Chiến Lược</h3>
-                            <p class="text-sm text-brand-dark/80 font-medium" data-i18n="cv3_desc">Định hướng nội dung dựa trên data.</p>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-dark/70 mb-2">03</div>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-dark mb-2 md:mb-3" data-i18n="cv3_title">Chiến Lược</h3>
+                            <p class="text-sm text-brand-dark/90 font-medium" data-i18n="cv3_desc">Định hướng nội dung dựa trên data.</p>
                         </div>
                     </div>
                 </div>
                 <!-- Box 4 -->
                 <div class="reveal-up delay-300 group">
-                    <div class="aspect-[2/3] bg-brand-dark flex flex-col justify-between p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
-                        <div class="w-10 h-10 rounded-full bg-brand-sage mt-8 shadow-inner"></div>
+                    <div class="aspect-auto md:aspect-[2/3] bg-brand-dark flex flex-col justify-between p-6 md:p-8 shadow-xl transform group-hover:-translate-y-4 transition-transform duration-500 md:translate-y-12">
+                        <div class="w-10 h-10 rounded-full bg-brand-sage mt-4 md:mt-8 shadow-inner mb-12 md:mb-0"></div>
                         <div>
-                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/50 mb-2">04</div>
-                            <h3 class="font-serif text-3xl text-brand-light mb-3" data-i18n="cv4_title">Đồng Hành</h3>
-                            <p class="text-sm text-brand-light/80 font-light" data-i18n="cv4_desc">Sát cánh như một team in-house.</p>
+                            <div class="text-[10px] font-bold tracking-widest uppercase text-brand-light/70 mb-2">04</div>
+                            <h3 class="font-serif text-2xl md:text-3xl text-brand-light mb-2 md:mb-3" data-i18n="cv4_title">Đồng Hành</h3>
+                            <p class="text-sm text-brand-light/90 font-light" data-i18n="cv4_desc">Sát cánh như một team in-house.</p>
                         </div>
                     </div>
                 </div>
@@ -311,45 +554,45 @@
     </section>
 
     <!-- SERVICES (List Tạp chí) -->
-    <section id="services" class="py-32 dark-section z-10 relative">
+    <section id="services" class="py-20 md:py-32 dark-section z-10 relative">
         <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-24 reveal-up">
+            <div class="text-center mb-16 md:mb-24 reveal-up">
                 <h2 class="title-large font-serif italic text-brand-light" data-i18n="services_title">Giải Pháp.</h2>
             </div>
 
             <div class="space-y-0">
-                <div class="group border-t border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
-                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
-                        <div class="md:col-span-1 font-display text-lg text-brand-pink">01</div>
+                <div class="group border-t border-brand-light/20 py-10 md:py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center px-2 md:px-4">
+                        <div class="md:col-span-1 font-display text-base md:text-lg text-brand-pink">01</div>
                         <div class="md:col-span-5">
-                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-pink transition-colors">TikTok Strategy</h3>
+                            <h3 class="font-serif text-3xl sm:text-4xl md:text-6xl text-brand-light group-hover:text-brand-pink transition-colors">TikTok Strategy</h3>
                         </div>
-                        <div class="md:col-span-5 md:col-start-8">
-                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s1_desc">Nghiên cứu thị trường, định vị concept kênh và xây dựng tuyến nội dung mang tính chiến lược dài hạn.</p>
+                        <div class="md:col-span-6">
+                            <p class="text-brand-light/90 font-light text-base md:text-xl md:mb-6 leading-relaxed" data-i18n="s1_desc">Nghiên cứu thị trường, định vị concept kênh và xây dựng tuyến nội dung mang tính chiến lược dài hạn.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="group border-t border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
-                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
-                        <div class="md:col-span-1 font-display text-lg text-brand-sage">02</div>
+                <div class="group border-t border-brand-light/20 py-10 md:py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center px-2 md:px-4">
+                        <div class="md:col-span-1 font-display text-base md:text-lg text-brand-sage">02</div>
                         <div class="md:col-span-5">
-                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-sage transition-colors">Video Production</h3>
+                            <h3 class="font-serif text-3xl sm:text-4xl md:text-6xl text-brand-light group-hover:text-brand-sage transition-colors">Video Production</h3>
                         </div>
-                        <div class="md:col-span-5 md:col-start-8">
-                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s2_desc">Biến ý tưởng thành khung hình. Kịch bản sắc bén, quay dựng chuyên nghiệp và tối ưu hook thu hút người xem.</p>
+                        <div class="md:col-span-6">
+                            <p class="text-brand-light/90 font-light text-base md:text-xl md:mb-6 leading-relaxed" data-i18n="s2_desc">Biến ý tưởng thành khung hình. Kịch bản sắc bén, quay dựng chuyên nghiệp và tối ưu hook thu hút người xem.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="group border-y border-brand-light/20 py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
-                    <div class="grid md:grid-cols-12 gap-8 items-center px-4">
-                        <div class="md:col-span-1 font-display text-lg text-brand-sand">03</div>
+                <div class="group border-y border-brand-light/20 py-10 md:py-16 hover:bg-brand-light/5 transition-colors cursor-pointer reveal-up">
+                    <div class="grid md:grid-cols-12 gap-4 md:gap-8 items-start md:items-center px-2 md:px-4">
+                        <div class="md:col-span-1 font-display text-base md:text-lg text-brand-sand">03</div>
                         <div class="md:col-span-5">
-                            <h3 class="font-serif text-5xl md:text-6xl text-brand-light group-hover:text-brand-sand transition-colors">Social Management</h3>
+                            <h3 class="font-serif text-3xl sm:text-4xl md:text-6xl text-brand-light group-hover:text-brand-sand transition-colors">Social Management</h3>
                         </div>
-                        <div class="md:col-span-5 md:col-start-8">
-                            <p class="text-brand-light/70 font-light text-xl mb-6 leading-relaxed" data-i18n="s3_desc">Chăm sóc kênh toàn diện. Đăng tải tối ưu thuật toán, quản lý tương tác và báo cáo hiệu suất hàng tuần.</p>
+                        <div class="md:col-span-6">
+                            <p class="text-brand-light/90 font-light text-base md:text-xl md:mb-6 leading-relaxed" data-i18n="s3_desc">Chăm sóc kênh toàn diện. Đăng tải tối ưu thuật toán, quản lý tương tác và báo cáo hiệu suất hàng tuần.</p>
                         </div>
                     </div>
                 </div>
@@ -358,58 +601,58 @@
     </section>
 
     <!-- PRICING (Sử dụng Hoa Hellebore) -->
-    <section id="pricing" class="py-32 bg-brand-light border-t border-brand-dark/10 relative overflow-hidden">
+    <section id="pricing" class="py-20 md:py-32 bg-brand-light border-t border-brand-dark/10 relative overflow-hidden">
         
         <!-- Bông hoa Hellebore rủ xuống từ góc trên bên phải -->
-        <div class="absolute right-[-5vw] top-[-10vh] w-[150vw] max-w-[650px] z-0 opacity-100 pointer-events-none transform -rotate-12">
+        <div class="absolute right-[-25vw] md:right-[-5vw] top-[-5vh] md:top-[-10vh] w-[100vw] md:w-[150vw] max-w-[650px] z-0 opacity-20 md:opacity-100 pointer-events-none transform -rotate-12">
             <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/helle.png" 
                  class="w-full h-auto drop-shadow-xl float-slow" 
                  alt="Hoa trang trí Pricing Hellebore">
         </div>
 
         <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-24 reveal-up">
-                <h2 class="font-serif text-6xl md:text-7xl text-brand-dark mb-4" data-i18n="price_title">Bảng giá.</h2>
-                <p class="text-brand-dark/50 text-xs tracking-[0.3em] uppercase font-bold" data-i18n="price_subtitle">Minh bạch. Rõ ràng. Hiệu quả.</p>
+            <div class="text-center mb-16 md:mb-24 reveal-up">
+                <h2 class="font-serif text-5xl md:text-7xl text-brand-dark mb-2 md:mb-4" data-i18n="price_title">Gói dịch vụ.</h2>
+                <p class="text-brand-dark/70 text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold" data-i18n="price_subtitle">Minh bạch. Rõ ràng. Hiệu quả.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- Các gói cước thiết kế Editorial tối giản -->
-                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up bg-brand-light/80 backdrop-blur-sm">
-                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Trial</div>
-                    <div class="font-serif text-5xl text-brand-dark mb-10">3 Video</div>
-                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                <div class="border border-brand-dark/20 p-6 md:p-10 hover:bg-white transition-colors reveal-up bg-brand-light/90 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/70 mb-2 md:mb-3">Trial</div>
+                    <div class="font-serif text-4xl md:text-5xl text-brand-dark mb-6 md:mb-10">3 Video</div>
+                    <ul class="space-y-3 md:space-y-4 text-sm text-brand-dark/90 font-medium">
                         <li class="border-b border-brand-dark/10 pb-2">Idea & Script</li>
                         <li class="border-b border-brand-dark/10 pb-2">Quay & Dựng</li>
                         <li class="border-b border-brand-dark/10 pb-2">Bàn giao file final</li>
                     </ul>
                 </div>
 
-                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up delay-100 bg-brand-light/80 backdrop-blur-sm">
-                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Basic</div>
-                    <div class="font-serif text-5xl text-brand-dark mb-10">10 Video <span class="text-base font-sans font-light text-brand-dark/40">/m</span></div>
-                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                <div class="border border-brand-dark/20 p-6 md:p-10 hover:bg-white transition-colors reveal-up delay-100 bg-brand-light/90 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/70 mb-2 md:mb-3">Basic</div>
+                    <div class="font-serif text-4xl md:text-5xl text-brand-dark mb-6 md:mb-10">10 Video <span class="text-sm md:text-base font-sans font-light text-brand-dark/60">/m</span></div>
+                    <ul class="space-y-3 md:space-y-4 text-sm text-brand-dark/90 font-medium">
                         <li class="border-b border-brand-dark/10 pb-2">Idea & Script</li>
                         <li class="border-b border-brand-dark/10 pb-2">Quay & Dựng</li>
                         <li class="border-b border-brand-dark/10 pb-2">Bàn giao file final</li>
                     </ul>
                 </div>
 
-                <div class="border border-brand-dark p-8 md:p-10 bg-brand-dark text-brand-light transform lg:-translate-y-4 shadow-2xl reveal-up delay-200 relative">
-                    <div class="absolute top-5 right-5 text-[10px] bg-brand-pink text-brand-dark px-3 py-1 uppercase font-bold tracking-widest">Hot</div>
-                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-pink mb-3">Standard</div>
-                    <div class="font-serif text-5xl text-brand-light mb-10">15 Video <span class="text-base font-sans font-light text-brand-light/40">/m</span></div>
-                    <ul class="space-y-4 text-sm text-brand-light/80 font-light">
-                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Idea & Script</li>
-                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Quay & Dựng</li>
-                        <li class="border-b border-brand-light/10 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Đăng bài & Quản lý</li>
+                <div class="border border-brand-dark p-6 md:p-10 bg-brand-dark text-brand-light transform lg:-translate-y-4 shadow-2xl reveal-up delay-200 relative">
+                    <div class="absolute top-4 md:top-5 right-4 md:right-5 text-[10px] bg-brand-pink text-brand-dark px-2 md:px-3 py-1 uppercase font-bold tracking-widest">Hot</div>
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-pink mb-2 md:mb-3">Standard</div>
+                    <div class="font-serif text-4xl md:text-5xl text-brand-light mb-6 md:mb-10">15 Video <span class="text-sm md:text-base font-sans font-light text-brand-light/60">/m</span></div>
+                    <ul class="space-y-3 md:space-y-4 text-sm text-brand-light/90 font-medium">
+                        <li class="border-b border-brand-light/20 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Idea & Script</li>
+                        <li class="border-b border-brand-light/20 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Quay & Dựng</li>
+                        <li class="border-b border-brand-light/20 pb-2 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-pink"></div> Đăng bài & Quản lý</li>
                     </ul>
                 </div>
 
-                <div class="border border-brand-dark/20 p-8 md:p-10 hover:bg-white transition-colors reveal-up delay-300 bg-brand-light/80 backdrop-blur-sm">
-                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/50 mb-3">Premium</div>
-                    <div class="font-serif text-5xl text-brand-dark mb-10">20 Video <span class="text-base font-sans font-light text-brand-dark/40">/m</span></div>
-                    <ul class="space-y-4 text-sm text-brand-dark/80 font-light">
+                <div class="border border-brand-dark/20 p-6 md:p-10 hover:bg-white transition-colors reveal-up delay-300 bg-brand-light/90 backdrop-blur-sm">
+                    <div class="font-display text-xs tracking-widest uppercase font-bold text-brand-dark/70 mb-2 md:mb-3">Premium</div>
+                    <div class="font-serif text-4xl md:text-5xl text-brand-dark mb-6 md:mb-10">20 Video <span class="text-sm md:text-base font-sans font-light text-brand-dark/60">/m</span></div>
+                    <ul class="space-y-3 md:space-y-4 text-sm text-brand-dark/90 font-medium">
                         <li class="border-b border-brand-dark/10 pb-2">Chiến lược kênh</li>
                         <li class="border-b border-brand-dark/10 pb-2">Idea, Quay, Dựng</li>
                         <li class="border-b border-brand-dark/10 pb-2">Đăng bài & Quản lý</li>
@@ -421,25 +664,24 @@
     </section>
 
     <!-- FOOTER CTA (Hoa 0003 Xếp Lớp với Chữ Trắng) -->
-    <section id="contact" class="dark-section pt-40 pb-12 overflow-hidden flex flex-col justify-between min-h-[85vh] relative">
+    <section id="contact" class="dark-section pt-32 md:pt-40 pb-12 overflow-hidden flex flex-col justify-between min-h-[70vh] md:min-h-[85vh] relative">
         
-        <!-- Giữ lại bông hoa 0003 cũ vì link thứ 4 bị lỗi -->
-        <div class="absolute left-[-5vw] bottom-[10vh] w-[50vw] max-w-[600px] z-10 pointer-events-none transform rotate-12">
+        <div class="absolute left-[-20vw] md:left-[-5vw] bottom-[15vh] md:bottom-[10vh] w-[80vw] md:w-[50vw] max-w-[600px] z-10 opacity-30 md:opacity-100 pointer-events-none transform rotate-12">
             <img src="https://techbytruong.wordpress.com/wp-content/uploads/2026/03/20260319_160521_0003.png" 
                  class="w-full h-auto drop-shadow-2xl float-medium" 
                  alt="Hoa trang trí Footer">
         </div>
 
         <div class="max-w-screen-2xl mx-auto px-6 w-full text-center relative z-20">
-            <h2 class="title-huge font-display font-black text-outline-light uppercase leading-[0.8] mb-12 pointer-events-none" data-i18n="contact_title">
+            <h2 class="title-huge font-display font-black text-outline-light uppercase leading-[0.9] md:leading-[0.8] mb-8 md:mb-12 pointer-events-none" data-i18n="contact_title">
                 LET'S <br> <span class="italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal">CREATE.</span>
             </h2>
             
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-10 md:gap-20 mt-16 bg-brand-dark/50 backdrop-blur-md p-6 rounded-3xl inline-flex mx-auto border border-brand-light/10">
-                <a href="mailto:contact@unitemedia.vn" class="text-brand-light text-xl md:text-2xl font-serif italic hover:text-brand-pink transition-colors flex items-center gap-4">
-                    <i class="fa-regular fa-envelope"></i> hello@unitemedia.vn
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 md:gap-20 mt-8 md:mt-16 bg-brand-dark/70 backdrop-blur-md p-6 rounded-3xl inline-flex mx-auto border border-brand-light/10">
+                <a href="mailto:contact@janmedia.vn" class="text-brand-light text-lg md:text-2xl font-serif italic hover:text-brand-pink transition-colors flex items-center gap-3 md:gap-4">
+                    <i class="fa-regular fa-envelope"></i> hello@janmedia.vn
                 </a>
-                <a href="https://zalo.me/0123456789" class="text-brand-light text-xl md:text-2xl font-serif italic hover:text-brand-sage transition-colors flex items-center gap-4">
+                <a href="https://zalo.me/0123456789" class="text-brand-light text-lg md:text-2xl font-serif italic hover:text-brand-sage transition-colors flex items-center gap-3 md:gap-4">
                     <i class="fa-brands fa-whatsapp"></i> Zalo / Hotline
                 </a>
             </div>
@@ -450,14 +692,14 @@
             <div class="border-t border-brand-light/20 py-5">
                 <div class="ticker-wrapper">
                     <div class="ticker-content text-brand-light/40 font-display text-[11px] tracking-[0.4em] uppercase font-bold">
-                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
-                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
-                        <span>UNITE MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                        <span>JAN MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                        <span>JAN MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
+                        <span>JAN MEDIA TEAM • SOCIAL STRATEGY • VIDEO PRODUCTION • TIKTOK GROWTH • </span>
                     </div>
                 </div>
             </div>
             <div class="text-center text-brand-light/30 text-[10px] font-bold tracking-[0.2em] uppercase mt-6">
-                © 2026 UNITE MEDIA. EDITORIAL DESIGN.
+                © 2026 JAN MEDIA. EDITORIAL DESIGN.
             </div>
         </div>
     </section>
@@ -498,19 +740,21 @@
             vi: {
                 nav_about: "Về chúng tôi",
                 nav_services: "Dịch vụ",
-                nav_process: "Case Study",
+                nav_showcase: "Sản phẩm",
                 nav_contact: "Liên hệ",
-                hero_word1: "UNITE",
+                hero_word1: "JAN",
                 hero_word2: "MEDIA",
                 hero_word3: "TEAM.",
                 hero_subtitle: "Digital Agency",
                 hero_desc: "Giải pháp truyền thông toàn diện. Bức tranh thương hiệu của bạn được vẽ bởi những nhà sáng tạo thế hệ mới.",
                 about_label: "Triết lý sáng tạo",
                 mission_title: "\"Mỗi nội dung đều có một nhịp điệu riêng.\"",
-                about_desc_1: "Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. Unite Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.",
+                about_desc_1: "Trong một thế giới lướt quá nhanh, chúng tôi tạo ra những điểm dừng. JAN Media Team không sản xuất content công nghiệp, chúng tôi kiến tạo những giá trị nguyên bản.",
                 about_desc_2: "Chúng tôi giúp thương hiệu của bạn \"nở rộ\" đúng thời điểm, tiếp cận đúng người và biến sự chú ý thành tăng trưởng bền vững.",
                 stat_2: "Video Sản Xuất",
                 stat_3: "Lượt Xem",
+                showcase_title: "Featured Work.",
+                showcase_subtitle: "Những nhịp điệu chuyển đổi",
                 core_title: "Hệ Giá Trị.",
                 core_subtitle: "Bảng màu tạo nên sự khác biệt.",
                 cv1_title: "Hiệu Quả",
@@ -525,26 +769,28 @@
                 s1_desc: "Nghiên cứu thị trường, định vị concept kênh và xây dựng tuyến nội dung mang tính chiến lược dài hạn.",
                 s2_desc: "Biến ý tưởng thành khung hình. Kịch bản sắc bén, quay dựng chuyên nghiệp và tối ưu hook thu hút người xem.",
                 s3_desc: "Chăm sóc kênh toàn diện. Đăng tải tối ưu thuật toán, quản lý tương tác và báo cáo hiệu suất hàng tuần.",
-                price_title: "Bảng giá.",
+                price_title: "Gói dịch vụ.",
                 price_subtitle: "Minh bạch. Rõ ràng. Hiệu quả.",
                 contact_title: "LET'S <br> <span class='italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal'>CREATE.</span>"
             },
             en: {
                 nav_about: "About",
                 nav_services: "Services",
-                nav_process: "Work",
+                nav_showcase: "Work",
                 nav_contact: "Contact",
-                hero_word1: "UNITE",
+                hero_word1: "JAN",
                 hero_word2: "MEDIA",
                 hero_word3: "TEAM.",
                 hero_subtitle: "Digital Agency",
                 hero_desc: "Comprehensive media solutions. Your brand's picture is painted by the new generation of creators.",
                 about_label: "Creative Philosophy",
                 mission_title: "\"Every content has its own rhythm.\"",
-                about_desc_1: "In a fast-scrolling world, we create pauses. Unite Media Team doesn't produce industrial content; we forge original values.",
+                about_desc_1: "In a fast-scrolling world, we create pauses. JAN Media Team doesn't produce industrial content; we forge original values.",
                 about_desc_2: "We help your brand \"bloom\" at the right time, reach the right people, and turn attention into sustainable growth.",
                 stat_2: "Videos Produced",
                 stat_3: "Total Views",
+                showcase_title: "Featured Work.",
+                showcase_subtitle: "The rhythm of conversion",
                 core_title: "Core Values.",
                 core_subtitle: "The palette that makes our difference.",
                 cv1_title: "Performance",
@@ -559,7 +805,7 @@
                 s1_desc: "Market research, channel concept positioning, and building long-term strategic content pipelines.",
                 s2_desc: "Turning ideas into frames. Sharp scripts, professional shooting, and optimized hooks to attract viewers.",
                 s3_desc: "Comprehensive channel care. Algorithm-optimized posting, engagement management, and weekly performance reports.",
-                price_title: "Pricing.",
+                price_title: "Service Packages.",
                 price_subtitle: "Transparent. Clear. Effective.",
                 contact_title: "LET'S <br> <span class='italic text-brand-pink text-outline-none drop-shadow-lg font-serif font-normal'>CREATE.</span>"
             }
