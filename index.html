@@ -129,10 +129,14 @@
             width: max-content;
             /* Tăng thời gian lên 80s vì dải băng bây giờ có tới 5 video, cần chạy chậm lại cho mượt */
             animation: scroll-video 80s linear infinite; 
+            /* Bật tăng tốc phần cứng giúp điện thoại cuộn cực mượt */
+            will-change: transform; 
         }
-        /* Tự động tạm dừng khi rê chuột vào để người dùng dễ dàng click link */
-        .video-ticker-track:hover {
-            animation-play-state: paused;
+        /* Chỉ cho phép tạm dừng khi dùng chuột thật (PC), vô hiệu hoá trên Mobile để tránh lỗi kẹt hover */
+        @media (hover: hover) {
+            .video-ticker-track:hover {
+                animation-play-state: paused;
+            }
         }
         @keyframes scroll-video {
             0% { transform: translateX(0); }
@@ -289,11 +293,13 @@
                 <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
                     
                     <!-- VIDEO 1 -->
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <!-- Thêm mask-image và transform-gpu để ép trình duyệt điện thoại cắt viền bo tròn -->
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <!-- Thêm viền bo tròn trực tiếp cho video -->
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -302,11 +308,11 @@
                     </div>
 
                     <!-- VIDEO 2 -->
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -315,11 +321,11 @@
                     </div>
 
                     <!-- VIDEO 3 -->
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -328,11 +334,11 @@
                     </div>
 
                     <!-- VIDEO 4 (Instagram) -->
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
@@ -341,11 +347,11 @@
                     </div>
 
                     <!-- VIDEO 5 (Instagram) -->
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
@@ -358,11 +364,11 @@
                 <!-- SET 2 (Bản sao hoàn hảo của SET 1) -->
                 <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
                     
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -370,11 +376,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -382,11 +388,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -394,11 +400,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
@@ -406,11 +412,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
@@ -423,11 +429,11 @@
                 <!-- SET 3 (Đảm bảo dải băng luôn kín trên màn hình siêu rộng 4K) -->
                 <div class="flex gap-6 md:gap-16 items-center pr-6 md:pr-16 shrink-0">
                     
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-8 rotate-[-3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHFxke8G/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@yenhomestayhp</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -435,11 +441,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-8 rotate-[4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9EnV8/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_staycation</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -447,11 +453,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-4 rotate-[-2deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_3.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://vt.tiktok.com/ZSHF9obNg/" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_1_2_3.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@janmedia</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-tiktok text-brand-pink"></i> TikTok</div>
@@ -459,11 +465,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:translate-y-6 rotate-[3deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_4.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DVyPBHWkfKy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
@@ -471,11 +477,11 @@
                         </a>
                     </div>
 
-                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                    <div class="w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu md:-translate-y-6 rotate-[-4deg] hover:rotate-0 hover:scale-[1.03] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none rounded-[2rem]"></div>
+                        <video src="video/video_5.mp4" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[2rem]"></video>
                         <a href="https://www.instagram.com/reel/DWRLUBOkV02/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 hover:bg-white/30 hover:border-white/50 transition-all">
-                            <img src="logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
+                            <img src="img/logo_4_5.png" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                             <div class="text-white">
                                 <div class="text-[10px] uppercase font-bold tracking-widest leading-none drop-shadow-md">@jan_reel</div>
                                 <div class="text-xs font-light drop-shadow-md"><i class="fa-brands fa-instagram text-brand-pink"></i> Instagram</div>
