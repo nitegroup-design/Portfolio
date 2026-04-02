@@ -326,11 +326,19 @@
                 let nenTangKey = video.nen_tang ? video.nen_tang.toLowerCase() : "tiktok";
                 const platform = PLATFORM_CONFIG[nenTangKey] || PLATFORM_CONFIG["tiktok"];
 
+                // TỰ ĐỘNG LẤY ẢNH BÌA TỪ CLOUDINARY (Biến mp4 thành jpg)
+                let posterAttr = "";
+                if (video.file_video && video.file_video.includes('cloudinary.com')) {
+                    let posterUrl = video.file_video.replace('.mp4', '.jpg').replace('f_mp4', 'f_jpg');
+                    posterAttr = `poster="${posterUrl}"`;
+                }
+
                 const a = document.createElement('a');
                 a.href = video.link_goc || "#"; a.target = "_blank"; a.draggable = false;
-                a.className = `video-item block w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu ${rClass} ${tClass} hover:rotate-0 hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)] cursor-pointer select-none`;
+                a.className = `video-item block w-[85vw] sm:w-[400px] lg:w-[450px] xl:w-[500px] shrink-0 relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl transform-gpu ${rClass} ${tClass} hover:rotate-0 hover:scale-[1.02] active:scale-[0.97] transition-all duration-500 group [mask-image:-webkit-radial-gradient(white,black)] cursor-pointer select-none bg-brand-dark/10`;
                 a.setAttribute('data-category', video.thuoc_kenh_id);
 
+                // THAY ĐỔI LỚN: Đổi src thành data-src, thêm preload="none" và poster
                 a.innerHTML = `
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent z-10 pointer-events-none rounded-[2rem] transition-opacity duration-500 group-hover:opacity-90"></div>
                     
@@ -340,8 +348,7 @@
                         </div>
                     </div>
                     
-                    <!-- BẢN VÁ CHO ĐIỆN THOẠI IPHONE: playsinline webkit-playsinline autoplay -->
-                    <video src="${video.file_video}" playsinline="true" webkit-playsinline="true" autoplay loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none"></video>
+                    <video data-src="${video.file_video}" ${posterAttr} preload="none" playsinline="true" webkit-playsinline="true" loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none transition-opacity duration-500"></video>
                     
                     <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 group-hover:bg-white/30 group-hover:border-white/50 transition-all pointer-events-none">
                         <img src="${video.logo}" draggable="false" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
@@ -451,7 +458,6 @@
                 const filtered = filterType === 'all' ? databaseItems : databaseItems.filter(item => item.getAttribute('data-category') === filterType);
                 if(filtered.length === 0) return;
 
-                // Giảm số lượng nhân bản xuống còn 4 để tối ưu RAM/CPU cho máy yếu
                 for(let i = 0; i < 4; i++) {
                     const setDiv = document.createElement('div');
                     setDiv.className = "flex gap-6 md:gap-16 items-center px-3 md:px-8";
@@ -462,23 +468,37 @@
                     track.appendChild(setDiv);
                 }
                 
-                // MẮT THẦN (INTERSECTION OBSERVER) - CHẾ ĐỘ NGỦ ĐÔNG VIDEO
+                // NÂNG CẤP MẮT THẦN: CHỈ TẢI VIDEO KHI LƯỚT TỚI (LAZY LOAD)
                 if (!window.videoObserver) {
                     window.videoObserver = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
+                            const vid = entry.target;
                             if (entry.isIntersecting) {
-                                entry.target.play().catch(()=>{}); // Hiện lên màn hình thì Play
+                                // 1. Nếu video chưa có nguồn (src) thì mới bắt đầu gắn link vào tải
+                                if (!vid.src && vid.dataset.src) {
+                                    vid.src = vid.dataset.src;
+                                    vid.load();
+                                }
+                                // 2. Ép tắt tiếng lần nữa cho chắc ăn trên iOS
+                                vid.muted = true; 
+                                // 3. Phát video
+                                const playPromise = vid.play();
+                                if (playPromise !== undefined) {
+                                    playPromise.catch(() => {
+                                        // Zalo chặn Autoplay sẽ rơi vào đây, nhưng nhờ có Poster nên không bị trắng màn hình!
+                                        console.log("Trình duyệt (Zalo/Safari) tạm ngắt Autoplay");
+                                    });
+                                }
                             } else {
-                                entry.target.pause(); // Khuất màn hình thì Pause xả RAM
+                                vid.pause(); // Khuất màn hình thì Pause
                             }
                         });
-                    }, { root: wrapper, threshold: 0.1 }); // 10% video lọt vào là chạy
+                    }, { root: wrapper, threshold: 0.1 }); 
                 }
 
                 const allVideos = track.querySelectorAll('video');
                 allVideos.forEach(vid => {
                     vid.muted = true; 
-                    // Nhờ mắt thần theo dõi thay vì ép load() toàn bộ cùng lúc
                     window.videoObserver.observe(vid);
                 });
 
