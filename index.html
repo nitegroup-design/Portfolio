@@ -333,12 +333,16 @@
 
                 a.innerHTML = `
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent z-10 pointer-events-none rounded-[2rem] transition-opacity duration-500 group-hover:opacity-90"></div>
+                    
                     <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                         <div class="w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-[0_0_30px_rgba(255,255,255,0.3)] transform scale-50 group-hover:scale-100 transition-transform duration-500 border border-white/50">
                             <i class="${platform.icon} ${platform.name === 'TikTok' ? 'ml-1 fa-play' : ''}"></i>
                         </div>
                     </div>
-                    <video src="${video.file_video}" crossorigin="anonymous" preload="metadata" playsinline loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none"></video>
+                    
+                    <!-- BẢN VÁ CHO ĐIỆN THOẠI IPHONE: playsinline webkit-playsinline autoplay -->
+                    <video src="${video.file_video}" playsinline="true" webkit-playsinline="true" autoplay loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none"></video>
+                    
                     <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 group-hover:bg-white/30 group-hover:border-white/50 transition-all pointer-events-none">
                         <img src="${video.logo}" draggable="false" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                         <div class="text-white">
