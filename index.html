@@ -265,10 +265,10 @@
         // ==============================================================================
 
         let DANH_SACH_KENH = [
-            { id: "yenhomestay", ten_kenh: "Yen Homestay HP", so_lieu: "12K Followers • 105K Tim", logo: "img/logo_avatar/logo_1_2_3.png" },
-            { id: "janstaycation", ten_kenh: "JAN Staycation", so_lieu: "45K Followers • 2.1M Tim", logo: "img/logo_avatar/logo_1_2_3.png" },
-            { id: "janmedia", ten_kenh: "JAN Media", so_lieu: "100K Followers • 5M Tim", logo: "img/logo_avatar/logo_1_2_3.png" },
-            { id: "janreel", ten_kenh: "JAN Reel", so_lieu: "20K Followers • 500K Tim", logo: "img/logo_avatar/logo_4_5.png" }
+            { id: "yenhomestay", ten_kenh: "Yen Homestay HP", so_lieu: "12K Followers • 105K Tim", logo: "img/logo_avatar/logo_1_2_3.png", link_kenh: "https://tiktok.com/@yenhomestayhp" },
+            { id: "janstaycation", ten_kenh: "JAN Staycation", so_lieu: "45K Followers • 2.1M Tim", logo: "img/logo_avatar/logo_1_2_3.png", link_kenh: "https://tiktok.com/@jan_staycation" },
+            { id: "janmedia", ten_kenh: "JAN Media", so_lieu: "100K Followers • 5M Tim", logo: "img/logo_avatar/logo_1_2_3.png", link_kenh: "https://tiktok.com/@janmedia" },
+            { id: "janreel", ten_kenh: "JAN Reel", so_lieu: "20K Followers • 500K Tim", logo: "img/logo_avatar/logo_4_5.png", link_kenh: "https://instagram.com/jan_reel" }
         ];
 
         let DANH_SACH_VIDEO = [
@@ -338,7 +338,7 @@
                             <i class="${platform.icon} ${platform.name === 'TikTok' ? 'ml-1 fa-play' : ''}"></i>
                         </div>
                     </div>
-                    <video src="${video.file_video}" crossorigin="anonymous" preload="auto" playsinline loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none"></video>
+                    <video src="${video.file_video}" crossorigin="anonymous" preload="metadata" playsinline loop muted class="w-full h-full object-cover rounded-[2rem] pointer-events-none"></video>
                     <div class="absolute bottom-6 left-6 z-20 flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 pr-4 rounded-full border border-white/20 group-hover:bg-white/30 group-hover:border-white/50 transition-all pointer-events-none">
                         <img src="${video.logo}" draggable="false" class="w-10 h-10 rounded-full object-cover border border-white/50 shadow-md" alt="Logo">
                         <div class="text-white">
@@ -361,8 +361,11 @@
             container.appendChild(btnAll);
 
             DANH_SACH_KENH.forEach(kenh => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex items-center gap-2 shrink-0';
+
                 const btn = document.createElement('button');
-                btn.className = 'filter-btn shrink-0 bg-white/60 backdrop-blur-sm text-brand-dark/80 hover:bg-white hover:text-brand-dark pr-6 pl-2 py-2 rounded-full flex items-center gap-3 transition-all border border-brand-dark/10 shadow-sm transform hover:-translate-y-1';
+                btn.className = 'filter-btn bg-white/60 backdrop-blur-sm text-brand-dark/80 hover:bg-white hover:text-brand-dark pr-6 pl-2 py-2 rounded-full flex items-center gap-3 transition-all border border-brand-dark/10 shadow-sm transform hover:-translate-y-1';
                 btn.setAttribute('data-filter', kenh.id);
                 btn.innerHTML = `
                     <img src="${kenh.logo}" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
@@ -371,7 +374,20 @@
                         <div class="text-[9px] font-medium opacity-70">${kenh.so_lieu}</div>
                     </div>
                 `;
-                container.appendChild(btn);
+                wrapper.appendChild(btn);
+
+                // Thêm nút Mở Kênh (chỉ hiện khi trong Google Sheets có điền link_kenh)
+                if (kenh.link_kenh) {
+                    const linkBtn = document.createElement('a');
+                    linkBtn.href = kenh.link_kenh;
+                    linkBtn.target = '_blank';
+                    linkBtn.title = 'Đến trang gốc';
+                    linkBtn.className = 'w-10 h-10 md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full bg-white/60 text-brand-dark/70 hover:bg-brand-pink hover:text-white transition-all shadow-sm border border-brand-dark/10 transform hover:-translate-y-1';
+                    linkBtn.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square text-xs md:text-sm"></i>';
+                    wrapper.appendChild(linkBtn);
+                }
+
+                container.appendChild(wrapper);
             });
         }
 
@@ -431,8 +447,8 @@
                 const filtered = filterType === 'all' ? databaseItems : databaseItems.filter(item => item.getAttribute('data-category') === filterType);
                 if(filtered.length === 0) return;
 
-                // Tăng số lượng nhân bản lên 6 Set để lướt bằng nút bấm không bị cụt
-                for(let i = 0; i < 6; i++) {
+                // Giảm số lượng nhân bản xuống còn 4 để tối ưu RAM/CPU cho máy yếu
+                for(let i = 0; i < 4; i++) {
                     const setDiv = document.createElement('div');
                     setDiv.className = "flex gap-6 md:gap-16 items-center px-3 md:px-8";
                     filtered.forEach(item => {
@@ -442,11 +458,24 @@
                     track.appendChild(setDiv);
                 }
                 
+                // MẮT THẦN (INTERSECTION OBSERVER) - CHẾ ĐỘ NGỦ ĐÔNG VIDEO
+                if (!window.videoObserver) {
+                    window.videoObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.play().catch(()=>{}); // Hiện lên màn hình thì Play
+                            } else {
+                                entry.target.pause(); // Khuất màn hình thì Pause xả RAM
+                            }
+                        });
+                    }, { root: wrapper, threshold: 0.1 }); // 10% video lọt vào là chạy
+                }
+
                 const allVideos = track.querySelectorAll('video');
                 allVideos.forEach(vid => {
-                    vid.muted = true; vid.load();
-                    let playPromise = vid.play();
-                    if (playPromise !== undefined) playPromise.catch(error => { console.log("Trình duyệt tạm ngưng tự động phát video"); });
+                    vid.muted = true; 
+                    // Nhờ mắt thần theo dõi thay vì ép load() toàn bộ cùng lúc
+                    window.videoObserver.observe(vid);
                 });
 
                 setTimeout(() => {
@@ -474,7 +503,7 @@
                 }
 
                 if(!isDown && !isHovered) {
-                    wrapper.scrollLeft += 1.2; 
+                    wrapper.scrollLeft += 3.5; 
                 }
                 autoScrollId = requestAnimationFrame(startAutoScroll);
             }
